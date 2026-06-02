@@ -1,265 +1,755 @@
 diff --git a/index.html b/index.html
-index 70d5d0721686b2948f593ff66ebdd1184915416a..8cf5bfa1247649d0688cd4cbf8db0e65a0301a2a 100644
+index 127da9cf98d2c1a50284161e5e56beaa186e6eba..abd98af1a578da6a35f9080751f3aa34815c1739 100644
 --- a/index.html
 +++ b/index.html
-@@ -1,31 +1,31 @@
- <!DOCTYPE html>
--<html lang="en">
+@@ -1,265 +1,485 @@
+-diff --git a/index.html b/index.html
+-index 70d5d0721686b2948f593ff66ebdd1184915416a..8cf5bfa1247649d0688cd4cbf8db0e65a0301a2a 100644
+---- a/index.html
+-+++ b/index.html
+-@@ -1,31 +1,31 @@
+- <!DOCTYPE html>
+--<html lang="en">
+-+<html lang="es">
+- <head>
+- <meta charset="UTF-8">
+- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+--<title>Alex AHA Visuals | Graphic Designer</title>
+-+<title>Alex AHA Visuals | Diseñador Gráfico</title>
+- 
+- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+- 
+- <style>
+- :root{
+- --c1:#EACFFC;
+- --c2:#D59EFA;
+- --c3:#C06EF7;
+- --c4:#AB3DF5;
+- --c5:#960DF2;
+- --c6:#780AC2;
+- --c7:#5A0891;
+- --c8:#3C0561;
+- 
+- --bg:#08040d;
+- --card:#12081d;
+- --text:#f5f5f5;
+- --muted:#b6b6b6;
+- }
+- 
+- *{
+- margin:0;
+- padding:0;
+- box-sizing:border-box;
+- scroll-behavior:smooth;
+-@@ -279,189 +279,189 @@ color:#8d8d8d;
+- }
+- 
+- @media(max-width:900px){
+- 
+- .about{
+- grid-template-columns:1fr;
+- }
+- 
+- .nav-links{
+- display:none;
+- }
+- 
+- .contact h2{
+- font-size:2.5rem;
+- }
+- 
+- }
+- </style>
+- </head>
+- <body>
+- 
+- <nav>
+- <div class="logo">AHA VISUALS</div>
+- 
+- <div class="nav-links">
+--<a href="#services">Services</a>
+--<a href="#portfolio">Portfolio</a>
+--<a href="#about">About</a>
+--<a href="#contact">Contact</a>
+-+<a href="#services">Servicios</a>
+-+<a href="#portfolio">Portafolio</a>
+-+<a href="#about">Sobre mí</a>
+-+<a href="#contact">Contacto</a>
+- </div>
+- </nav>
+- 
+- <section class="hero">
+- 
+- <div class="hero-content">
+- 
+- <div class="tag">
+--Creative Designer • Branding • Visual Identity
+-+Diseñador Creativo • Marca • Identidad Visual
+- </div>
+- 
+- <h1>
+--Design that creates
+--<span class="gradient">attention.</span>
+-+Diseño que crea
+-+<span class="gradient">atención.</span>
+- </h1>
+- 
+- <p>
+--I create visual identities, branding systems, social media campaigns and digital experiences that help brands become memorable.
+-+Creo identidades visuales, sistemas de marca, campañas para redes sociales y experiencias digitales que ayudan a las marcas a ser memorables.
+- </p>
+- 
+- <div class="buttons">
+--<a href="#portfolio" class="btn primary">View Work</a>
+--<a href="#contact" class="btn secondary">Let's Talk</a>
+-+<a href="#portfolio" class="btn primary">Ver trabajos</a>
+-+<a href="#contact" class="btn secondary">Hablemos</a>
+- </div>
+- 
+- </div>
+- 
+- </section>
+- 
+- <section id="services">
+- 
+--<h2 class="section-title">Services</h2>
+-+<h2 class="section-title">Servicios</h2>
+- 
+- <p class="section-sub">
+--Strategic design focused on perception, memorability and visual impact.
+-+Diseño estratégico enfocado en percepción, recordación e impacto visual.
+- </p>
+- 
+- <div class="grid">
+- 
+- <div class="card">
+--<h3>Brand Identity</h3>
+--<p>Logos, visual systems, typography and brand guidelines.</p>
+-+<h3>Identidad de Marca</h3>
+-+<p>Logotipos, sistemas visuales, tipografía y guías de marca.</p>
+- </div>
+- 
+- <div class="card">
+--<h3>Social Media Design</h3>
+--<p>High-performing visual content optimized for engagement.</p>
+-+<h3>Diseño para Redes Sociales</h3>
+-+<p>Contenido visual de alto rendimiento optimizado para generar interacción.</p>
+- </div>
+- 
+- <div class="card">
+--<h3>Creative Direction</h3>
+--<p>Visual strategy, positioning and cohesive creative execution.</p>
+-+<h3>Dirección Creativa</h3>
+-+<p>Estrategia visual, posicionamiento y ejecución creativa coherente.</p>
+- </div>
+- 
+- <div class="card">
+--<h3>Motion Graphics</h3>
+--<p>Animated visuals and dynamic content for digital platforms.</p>
+-+<h3>Gráficos en Movimiento</h3>
+-+<p>Piezas animadas y contenido dinámico para plataformas digitales.</p>
+- </div>
+- 
+- </div>
+- 
+- </section>
+- 
+- <section id="portfolio">
+- 
+--<h2 class="section-title">Selected Work</h2>
+-+<h2 class="section-title">Trabajos Seleccionados</h2>
+- 
+- <p class="section-sub">
+--Replace these placeholders with your real projects.
+-+Reemplaza estos espacios con tus proyectos reales.
+- </p>
+- 
+- <div class="portfolio">
+- 
+--<div class="project" data-title="Luxury Branding"></div>
+--<div class="project" data-title="Sports Betting Identity"></div>
+--<div class="project" data-title="Social Media Campaign"></div>
+--<div class="project" data-title="Creative Visual System"></div>
+--<div class="project" data-title="Motion Design Project"></div>
+--<div class="project" data-title="Premium Logo Collection"></div>
+-+<div class="project" data-title="Marca de Lujo"></div>
+-+<div class="project" data-title="Identidad para Apuestas Deportivas"></div>
+-+<div class="project" data-title="Campaña para Redes Sociales"></div>
+-+<div class="project" data-title="Sistema Visual Creativo"></div>
+-+<div class="project" data-title="Proyecto de Diseño en Movimiento"></div>
+-+<div class="project" data-title="Colección Premium de Logotipos"></div>
+- 
+- </div>
+- 
+- </section>
+- 
+- <section id="about">
+- 
+- <div class="about">
+- 
+- <div class="about-box">
+--<h2 class="section-title">About Alex</h2>
+-+<h2 class="section-title">Sobre Alex</h2>
+- 
+- <p>
+--A graphic designer focused on building memorable brands through strategic visual communication. Every project combines aesthetics, psychology and clarity to create stronger perception and deeper audience connection.
+-+Diseñador gráfico enfocado en crear marcas memorables a través de comunicación visual estratégica. Cada proyecto combina estética, psicología y claridad para fortalecer la percepción y conectar más profundamente con la audiencia.
+- </p>
+- 
+- </div>
+- 
+- <div class="stats">
+- 
+- <div class="stat">
+- <h2>100+</h2>
+--<p>Design Projects</p>
+-+<p>Proyectos de Diseño</p>
+- </div>
+- 
+- <div class="stat">
+- <h2>5+</h2>
+--<p>Years Creating</p>
+-+<p>Años Creando</p>
+- </div>
+- 
+- <div class="stat">
+- <h2>∞</h2>
+--<p>Ideas Generated</p>
+-+<p>Ideas Generadas</p>
+- </div>
+- 
+- <div class="stat">
+- <h2>24/7</h2>
+--<p>Creative Thinking</p>
+-+<p>Pensamiento Creativo</p>
+- </div>
+- 
+- </div>
+- 
+- </div>
+- 
+- </section>
+- 
+- <section id="contact" class="contact">
+- 
+--<h2>Let's Build Something Great</h2>
+-+<h2>Construyamos Algo Grande</h2>
+- 
+- <p>
+--Available for branding projects, visual identities, social media campaigns and creative collaborations.
+-+Disponible para proyectos de marca, identidades visuales, campañas para redes sociales y colaboraciones creativas.
+- </p>
+- 
+- <a href="mailto:hello@ahavisuals.com" class="btn primary">
+--Contact Me
+-+Contáctame
+- </a>
+- 
+- </section>
+- 
+- <footer>
+- © 2026 Alex AHA Visuals
+- </footer>
+- 
+- <script>
+- 
+- const observer = new IntersectionObserver(entries => {
+- 
+- entries.forEach(entry => {
+- 
+- if(entry.isIntersecting){
+- 
+- entry.target.animate([
+- {
+- opacity:0,
+- transform:'translateY(40px)'
+- },
+- {
+- opacity:1,
+- transform:'translateY(0)'
+- }
++<!DOCTYPE html>
 +<html lang="es">
- <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
--<title>Alex AHA Visuals | Graphic Designer</title>
++<head>
++<meta charset="UTF-8">
++<meta name="viewport" content="width=device-width, initial-scale=1.0">
 +<title>Alex AHA Visuals | Diseñador Gráfico</title>
- 
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
- 
- <style>
- :root{
- --c1:#EACFFC;
- --c2:#D59EFA;
- --c3:#C06EF7;
- --c4:#AB3DF5;
- --c5:#960DF2;
- --c6:#780AC2;
- --c7:#5A0891;
- --c8:#3C0561;
- 
- --bg:#08040d;
- --card:#12081d;
- --text:#f5f5f5;
- --muted:#b6b6b6;
- }
- 
- *{
- margin:0;
- padding:0;
- box-sizing:border-box;
- scroll-behavior:smooth;
-@@ -279,189 +279,189 @@ color:#8d8d8d;
- }
- 
- @media(max-width:900px){
- 
- .about{
- grid-template-columns:1fr;
- }
- 
- .nav-links{
- display:none;
- }
- 
- .contact h2{
- font-size:2.5rem;
- }
- 
- }
- </style>
- </head>
- <body>
- 
- <nav>
- <div class="logo">AHA VISUALS</div>
- 
- <div class="nav-links">
--<a href="#services">Services</a>
--<a href="#portfolio">Portfolio</a>
--<a href="#about">About</a>
--<a href="#contact">Contact</a>
++
++<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
++
++<style>
++:root{
++--c1:#EACFFC;
++--c2:#D59EFA;
++--c3:#C06EF7;
++--c4:#AB3DF5;
++--c5:#960DF2;
++--c6:#780AC2;
++--c7:#5A0891;
++--c8:#3C0561;
++
++--bg:#08040d;
++--card:#12081d;
++--text:#f5f5f5;
++--muted:#b6b6b6;
++}
++
++*{
++margin:0;
++padding:0;
++box-sizing:border-box;
++scroll-behavior:smooth;
++}
++
++body{
++font-family:'Inter',sans-serif;
++background:var(--bg);
++color:var(--text);
++overflow-x:hidden;
++}
++
++body::before{
++content:"";
++position:fixed;
++inset:0;
++background:
++radial-gradient(circle at 20% 20%, rgba(150,13,242,.25), transparent 30%),
++radial-gradient(circle at 80% 40%, rgba(192,110,247,.15), transparent 30%),
++radial-gradient(circle at 50% 90%, rgba(60,5,97,.5), transparent 40%);
++pointer-events:none;
++z-index:-1;
++}
++
++nav{
++position:fixed;
++top:0;
++width:100%;
++padding:24px 8%;
++display:flex;
++justify-content:space-between;
++align-items:center;
++backdrop-filter:blur(16px);
++background:rgba(8,4,13,.5);
++border-bottom:1px solid rgba(255,255,255,.05);
++z-index:100;
++}
++
++.logo{
++font-size:1.2rem;
++font-weight:800;
++letter-spacing:.12em;
++}
++
++.nav-links{
++display:flex;
++gap:30px;
++}
++
++.nav-links a{
++text-decoration:none;
++color:white;
++font-size:.95rem;
++}
++
++.hero{
++min-height:100vh;
++display:flex;
++align-items:center;
++padding:0 8%;
++}
++
++.hero-content{
++max-width:850px;
++}
++
++.tag{
++display:inline-block;
++padding:10px 16px;
++border:1px solid rgba(255,255,255,.1);
++border-radius:999px;
++margin-bottom:25px;
++color:var(--c2);
++}
++
++.hero h1{
++font-size:clamp(3rem,8vw,7rem);
++line-height:.95;
++margin-bottom:25px;
++}
++
++.gradient{
++background:linear-gradient(90deg,var(--c1),var(--c4));
++-webkit-background-clip:text;
++-webkit-text-fill-color:transparent;
++}
++
++.hero p{
++font-size:1.2rem;
++line-height:1.8;
++max-width:700px;
++color:var(--muted);
++margin-bottom:40px;
++}
++
++.buttons{
++display:flex;
++gap:20px;
++flex-wrap:wrap;
++}
++
++.btn{
++padding:16px 28px;
++border-radius:14px;
++font-weight:700;
++text-decoration:none;
++transition:.3s;
++}
++
++.primary{
++background:linear-gradient(135deg,var(--c4),var(--c5));
++color:white;
++}
++
++.secondary{
++border:1px solid rgba(255,255,255,.1);
++color:white;
++}
++
++.btn:hover{
++transform:translateY(-4px);
++}
++
++section{
++padding:120px 8%;
++}
++
++.section-title{
++font-size:3rem;
++margin-bottom:20px;
++}
++
++.section-sub{
++color:var(--muted);
++margin-bottom:60px;
++max-width:700px;
++line-height:1.8;
++}
++
++.grid{
++display:grid;
++grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
++gap:25px;
++}
++
++.card{
++background:var(--card);
++padding:30px;
++border-radius:24px;
++border:1px solid rgba(255,255,255,.05);
++transition:.3s;
++}
++
++.card:hover{
++transform:translateY(-8px);
++border-color:rgba(192,110,247,.4);
++}
++
++.card h3{
++margin-bottom:15px;
++font-size:1.3rem;
++}
++
++.card p{
++color:var(--muted);
++line-height:1.7;
++}
++
++.portfolio{
++display:grid;
++grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
++gap:25px;
++}
++
++.project{
++height:280px;
++border-radius:24px;
++overflow:hidden;
++position:relative;
++background:
++linear-gradient(135deg,var(--c8),var(--c5));
++}
++
++.project::after{
++content:attr(data-title);
++position:absolute;
++bottom:25px;
++left:25px;
++font-size:1.3rem;
++font-weight:700;
++}
++
++.about{
++display:grid;
++grid-template-columns:1fr 1fr;
++gap:60px;
++align-items:center;
++}
++
++.about-box{
++background:var(--card);
++padding:40px;
++border-radius:24px;
++}
++
++.about-box p{
++line-height:1.9;
++color:var(--muted);
++}
++
++.stats{
++display:grid;
++grid-template-columns:repeat(2,1fr);
++gap:20px;
++}
++
++.stat{
++background:var(--card);
++padding:35px;
++border-radius:20px;
++text-align:center;
++}
++
++.stat h2{
++font-size:2.5rem;
++color:var(--c2);
++}
++
++.contact{
++text-align:center;
++}
++
++.contact h2{
++font-size:4rem;
++margin-bottom:20px;
++}
++
++.contact p{
++max-width:650px;
++margin:auto;
++color:var(--muted);
++line-height:1.8;
++margin-bottom:35px;
++}
++
++footer{
++padding:40px;
++text-align:center;
++border-top:1px solid rgba(255,255,255,.05);
++color:#8d8d8d;
++}
++
++@media(max-width:900px){
++
++.about{
++grid-template-columns:1fr;
++}
++
++.nav-links{
++display:none;
++}
++
++.contact h2{
++font-size:2.5rem;
++}
++
++}
++</style>
++</head>
++<body>
++
++<nav>
++<div class="logo">AHA VISUALS</div>
++
++<div class="nav-links">
 +<a href="#services">Servicios</a>
 +<a href="#portfolio">Portafolio</a>
 +<a href="#about">Sobre mí</a>
 +<a href="#contact">Contacto</a>
- </div>
- </nav>
- 
- <section class="hero">
- 
- <div class="hero-content">
- 
- <div class="tag">
--Creative Designer • Branding • Visual Identity
-+Diseñador Creativo • Marca • Identidad Visual
- </div>
- 
- <h1>
--Design that creates
--<span class="gradient">attention.</span>
++</div>
++</nav>
++
++<section class="hero">
++
++<div class="hero-content">
++
++<div class="tag">
++Diseñador creativo • Branding • Identidad visual
++</div>
++
++<h1>
 +Diseño que crea
 +<span class="gradient">atención.</span>
- </h1>
- 
- <p>
--I create visual identities, branding systems, social media campaigns and digital experiences that help brands become memorable.
++</h1>
++
++<p>
 +Creo identidades visuales, sistemas de marca, campañas para redes sociales y experiencias digitales que ayudan a las marcas a ser memorables.
- </p>
- 
- <div class="buttons">
--<a href="#portfolio" class="btn primary">View Work</a>
--<a href="#contact" class="btn secondary">Let's Talk</a>
++</p>
++
++<div class="buttons">
 +<a href="#portfolio" class="btn primary">Ver trabajos</a>
 +<a href="#contact" class="btn secondary">Hablemos</a>
- </div>
- 
- </div>
- 
- </section>
- 
- <section id="services">
- 
--<h2 class="section-title">Services</h2>
++</div>
++
++</div>
++
++</section>
++
++<section id="services">
++
 +<h2 class="section-title">Servicios</h2>
- 
- <p class="section-sub">
--Strategic design focused on perception, memorability and visual impact.
++
++<p class="section-sub">
 +Diseño estratégico enfocado en percepción, recordación e impacto visual.
- </p>
- 
- <div class="grid">
- 
- <div class="card">
--<h3>Brand Identity</h3>
--<p>Logos, visual systems, typography and brand guidelines.</p>
-+<h3>Identidad de Marca</h3>
++</p>
++
++<div class="grid">
++
++<div class="card">
++<h3>Identidad de marca</h3>
 +<p>Logotipos, sistemas visuales, tipografía y guías de marca.</p>
- </div>
- 
- <div class="card">
--<h3>Social Media Design</h3>
--<p>High-performing visual content optimized for engagement.</p>
-+<h3>Diseño para Redes Sociales</h3>
++</div>
++
++<div class="card">
++<h3>Diseño para redes sociales</h3>
 +<p>Contenido visual de alto rendimiento optimizado para generar interacción.</p>
- </div>
- 
- <div class="card">
--<h3>Creative Direction</h3>
--<p>Visual strategy, positioning and cohesive creative execution.</p>
-+<h3>Dirección Creativa</h3>
++</div>
++
++<div class="card">
++<h3>Dirección creativa</h3>
 +<p>Estrategia visual, posicionamiento y ejecución creativa coherente.</p>
- </div>
- 
- <div class="card">
--<h3>Motion Graphics</h3>
--<p>Animated visuals and dynamic content for digital platforms.</p>
-+<h3>Gráficos en Movimiento</h3>
++</div>
++
++<div class="card">
++<h3>Gráficos en movimiento</h3>
 +<p>Piezas animadas y contenido dinámico para plataformas digitales.</p>
- </div>
- 
- </div>
- 
- </section>
- 
- <section id="portfolio">
- 
--<h2 class="section-title">Selected Work</h2>
-+<h2 class="section-title">Trabajos Seleccionados</h2>
- 
- <p class="section-sub">
--Replace these placeholders with your real projects.
++</div>
++
++</div>
++
++</section>
++
++<section id="portfolio">
++
++<h2 class="section-title">Trabajos seleccionados</h2>
++
++<p class="section-sub">
 +Reemplaza estos espacios con tus proyectos reales.
- </p>
- 
- <div class="portfolio">
- 
--<div class="project" data-title="Luxury Branding"></div>
--<div class="project" data-title="Sports Betting Identity"></div>
--<div class="project" data-title="Social Media Campaign"></div>
--<div class="project" data-title="Creative Visual System"></div>
--<div class="project" data-title="Motion Design Project"></div>
--<div class="project" data-title="Premium Logo Collection"></div>
-+<div class="project" data-title="Marca de Lujo"></div>
-+<div class="project" data-title="Identidad para Apuestas Deportivas"></div>
-+<div class="project" data-title="Campaña para Redes Sociales"></div>
-+<div class="project" data-title="Sistema Visual Creativo"></div>
-+<div class="project" data-title="Proyecto de Diseño en Movimiento"></div>
-+<div class="project" data-title="Colección Premium de Logotipos"></div>
- 
- </div>
- 
- </section>
- 
- <section id="about">
- 
- <div class="about">
- 
- <div class="about-box">
--<h2 class="section-title">About Alex</h2>
++</p>
++
++<div class="portfolio">
++
++<div class="project" data-title="Marca de lujo"></div>
++<div class="project" data-title="Identidad para apuestas deportivas"></div>
++<div class="project" data-title="Campaña para redes sociales"></div>
++<div class="project" data-title="Sistema visual creativo"></div>
++<div class="project" data-title="Proyecto de diseño en movimiento"></div>
++<div class="project" data-title="Colección premium de logotipos"></div>
++
++</div>
++
++</section>
++
++<section id="about">
++
++<div class="about">
++
++<div class="about-box">
 +<h2 class="section-title">Sobre Alex</h2>
- 
- <p>
--A graphic designer focused on building memorable brands through strategic visual communication. Every project combines aesthetics, psychology and clarity to create stronger perception and deeper audience connection.
++
++<p>
 +Diseñador gráfico enfocado en crear marcas memorables a través de comunicación visual estratégica. Cada proyecto combina estética, psicología y claridad para fortalecer la percepción y conectar más profundamente con la audiencia.
- </p>
- 
- </div>
- 
- <div class="stats">
- 
- <div class="stat">
- <h2>100+</h2>
--<p>Design Projects</p>
-+<p>Proyectos de Diseño</p>
- </div>
- 
- <div class="stat">
- <h2>5+</h2>
--<p>Years Creating</p>
-+<p>Años Creando</p>
- </div>
- 
- <div class="stat">
- <h2>∞</h2>
--<p>Ideas Generated</p>
-+<p>Ideas Generadas</p>
- </div>
- 
- <div class="stat">
- <h2>24/7</h2>
--<p>Creative Thinking</p>
-+<p>Pensamiento Creativo</p>
- </div>
- 
- </div>
- 
- </div>
- 
- </section>
- 
- <section id="contact" class="contact">
- 
--<h2>Let's Build Something Great</h2>
-+<h2>Construyamos Algo Grande</h2>
- 
- <p>
--Available for branding projects, visual identities, social media campaigns and creative collaborations.
++</p>
++
++</div>
++
++<div class="stats">
++
++<div class="stat">
++<h2>100+</h2>
++<p>Proyectos de diseño</p>
++</div>
++
++<div class="stat">
++<h2>5+</h2>
++<p>Años creando</p>
++</div>
++
++<div class="stat">
++<h2>∞</h2>
++<p>Ideas generadas</p>
++</div>
++
++<div class="stat">
++<h2>24/7</h2>
++<p>Pensamiento creativo</p>
++</div>
++
++</div>
++
++</div>
++
++</section>
++
++<section id="contact" class="contact">
++
++<h2>Construyamos algo grande</h2>
++
++<p>
 +Disponible para proyectos de marca, identidades visuales, campañas para redes sociales y colaboraciones creativas.
- </p>
- 
- <a href="mailto:hello@ahavisuals.com" class="btn primary">
--Contact Me
++</p>
++
++<a href="mailto:hello@ahavisuals.com" class="btn primary">
 +Contáctame
- </a>
- 
- </section>
- 
- <footer>
- © 2026 Alex AHA Visuals
- </footer>
- 
- <script>
- 
- const observer = new IntersectionObserver(entries => {
- 
- entries.forEach(entry => {
- 
- if(entry.isIntersecting){
- 
- entry.target.animate([
- {
- opacity:0,
- transform:'translateY(40px)'
- },
- {
- opacity:1,
- transform:'translateY(0)'
- }
++</a>
++
++</section>
++
++<footer>
++© 2026 Alex AHA Visuals
++</footer>
++
++<script>
++
++const observer = new IntersectionObserver(entries => {
++
++entries.forEach(entry => {
++
++if(entry.isIntersecting){
++
++entry.target.animate([
++{
++opacity:0,
++transform:'translateY(40px)'
++},
++{
++opacity:1,
++transform:'translateY(0)'
++}
++],{
++duration:800,
++fill:'forwards'
++});
++
++}
++
++});
++
++},{threshold:0.15});
++
++document.querySelectorAll('.card,.project,.stat,.about-box')
++.forEach(el => observer.observe(el));
++
++</script>
++
++</body>
++</html>
