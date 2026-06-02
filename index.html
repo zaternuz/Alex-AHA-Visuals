@@ -380,8 +380,7 @@ section{
   border-radius:24px;
   overflow:hidden;
   position:relative;
-  background:
-    linear-gradient(135deg,var(--c8),var(--c5));
+  background:linear-gradient(135deg,var(--c8),var(--c5));
   border:1px solid rgba(255,255,255,.06);
   isolation:isolate;
 }
@@ -527,21 +526,13 @@ section{
   background:linear-gradient(135deg, rgba(150,13,242,.18), rgba(234,207,252,.08));
   border:1px solid rgba(255,255,255,.08);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+  overflow:hidden;
 }
 
-.tool-icon svg{
-  width:30px;
-  height:30px;
-  fill:none;
-  stroke:var(--c1);
-  stroke-width:1.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.tool-icon .fill{
-  fill:var(--c1);
-  stroke:none;
+.tool-icon img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .tool strong{
@@ -603,7 +594,7 @@ footer{
 }
 
 .modal{
-  display:none;
+  display:flex;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.74);
@@ -612,10 +603,14 @@ footer{
   justify-content:center;
   z-index:1000;
   padding:20px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .28s ease;
 }
 
 .modal.open{
-  display:flex;
+  opacity:1;
+  pointer-events:auto;
 }
 
 .modal-card{
@@ -626,6 +621,14 @@ footer{
   padding:30px;
   box-shadow:0 30px 90px rgba(0,0,0,.55);
   position:relative;
+  transform:translateY(16px) scale(.98);
+  opacity:0;
+  transition:transform .32s ease, opacity .32s ease;
+}
+
+.modal.open .modal-card{
+  transform:translateY(0) scale(1);
+  opacity:1;
 }
 
 .modal-top{
@@ -769,7 +772,7 @@ footer{
 <body>
 
 <nav>
-  <div class="brand">
+  <div class="brand" id="inicio">
     <img src="Logo.png" alt="Logo de ALEX AHA VISUALS">
     <span>ALEX AHA VISUALS</span>
   </div>
@@ -800,7 +803,6 @@ footer{
 
     <div class="buttons">
       <button class="btn primary" onclick="openModal()">Quiero contactarte</button>
-      <button class="btn secondary" onclick="openModal()">Ver información de contacto</button>
     </div>
   </div>
 
@@ -840,23 +842,28 @@ footer{
 
   <div class="grid">
     <div class="card">
-      <h3>Identidad de marca</h3>
-      <p>Logos, sistemas visuales, tipografía y lineamientos para que la marca se vea firme y reconocible.</p>
+      <h3>Logos</h3>
+      <p>Creo símbolos claros para que una marca se reconozca rápido.</p>
     </div>
 
     <div class="card">
       <h3>Diseño para redes sociales</h3>
-      <p>Contenido visual pensado para enganchar, mantener coherencia y elevar la presencia digital.</p>
+      <p>Diseño posts que comunican rápido y se ven ordenados.</p>
     </div>
 
     <div class="card">
-      <h3>Dirección creativa</h3>
-      <p>Definición de estilo, ritmo visual y composición para que todo el proyecto tenga una misma línea.</p>
+      <h3>Identidad visual</h3>
+      <p>Defino colores, tipografías y estilo para que todo combine.</p>
     </div>
 
     <div class="card">
-      <h3>Piezas digitales</h3>
-      <p>Banners, portadas, anuncios y gráficos listos para web, campañas y plataformas digitales.</p>
+      <h3>Miniatura para Videos</h3>
+      <p>Hago miniaturas que llaman la atención y explican el contenido.</p>
+    </div>
+
+    <div class="card">
+      <h3>Motion Graphics</h3>
+      <p>Animaciones simples que hacen ver el contenido más dinámico.</p>
     </div>
   </div>
 </section>
@@ -868,17 +875,20 @@ footer{
   </p>
 
   <div class="portfolio">
-    <div class="project" data-title="Branding premium">
-      <img src="Logo.png" alt="Vista de branding premium">
+    <div class="project" data-title="Logos">
+      <img src="Logo.png" alt="Vista de logos">
+    </div>
+    <div class="project" data-title="Diseño para redes sociales">
+      <img src="Logo.png" alt="Vista de diseño para redes sociales">
     </div>
     <div class="project" data-title="Identidad visual">
       <img src="Logo.png" alt="Vista de identidad visual">
     </div>
-    <div class="project" data-title="Diseño para redes">
-      <img src="Logo.png" alt="Vista de diseño para redes">
+    <div class="project" data-title="Miniatura para Videos">
+      <img src="Logo.png" alt="Vista de miniatura para videos">
     </div>
-    <div class="project" data-title="Marca personal">
-      <img src="Logo.png" alt="Vista de marca personal">
+    <div class="project" data-title="Motion Graphics">
+      <img src="Logo.png" alt="Vista de motion graphics">
     </div>
   </div>
 </section>
@@ -891,13 +901,7 @@ footer{
 
   <div class="tools-grid">
     <div class="tool">
-      <div class="tool-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <rect x="4" y="4" width="16" height="16" rx="5"></rect>
-          <path d="M8 16l4-8 4 8"></path>
-          <path d="M9.8 13h4.4"></path>
-        </svg>
-      </div>
+      <div class="tool-icon" aria-hidden="true"><img src="Adobe Illustrator.png" alt="Adobe Illustrator"></div>
       <div>
         <strong>Adobe Illustrator</strong>
         <span>Vectores, logos, íconos y sistemas gráficos limpios.</span>
@@ -905,15 +909,7 @@ footer{
     </div>
 
     <div class="tool">
-      <div class="tool-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <rect x="4" y="4" width="16" height="16" rx="6"></rect>
-          <circle cx="9" cy="9" r="2.3"></circle>
-          <circle cx="9" cy="15" r="2.3"></circle>
-          <circle cx="15" cy="12" r="2.3"></circle>
-          <path d="M9 9l6 3M9 15l6-3"></path>
-        </svg>
-      </div>
+      <div class="tool-icon" aria-hidden="true"><img src="Figma.png" alt="Figma"></div>
       <div>
         <strong>Figma</strong>
         <span>Maquetación visual, prototipos y composición de pantallas.</span>
@@ -921,13 +917,7 @@ footer{
     </div>
 
     <div class="tool">
-      <div class="tool-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <rect x="4" y="4" width="16" height="16" rx="5"></rect>
-          <path d="M8 16V8h4.2a2.2 2.2 0 010 4.4H8"></path>
-          <path d="M13.5 16l1.6-1.6 1.6 1.6"></path>
-        </svg>
-      </div>
+      <div class="tool-icon" aria-hidden="true"><img src="Adobe Photoshop.png" alt="Adobe Photoshop"></div>
       <div>
         <strong>Adobe Photoshop</strong>
         <span>Retoque, fotomontaje, texturas y ajustes de imagen.</span>
@@ -935,17 +925,34 @@ footer{
     </div>
 
     <div class="tool">
-      <div class="tool-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <rect x="4" y="4" width="16" height="16" rx="6"></rect>
-          <path d="M8 14c0-2.2 1.7-4 4-4 1.6 0 2.8.8 3.6 2"></path>
-          <path d="M15 10c-1.1 1.4-1.7 3-1.7 4.8"></path>
-          <path d="M9.3 16.2c1.1-.1 2.2-.7 3-1.8"></path>
-        </svg>
-      </div>
+      <div class="tool-icon" aria-hidden="true"><img src="Canva.png" alt="Canva"></div>
       <div>
         <strong>Canva</strong>
         <span>Adaptaciones rápidas, piezas sociales y contenidos ágiles.</span>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="tool-icon" aria-hidden="true"><img src="Capcut.png" alt="Capcut"></div>
+      <div>
+        <strong>Capcut</strong>
+        <span>Edición rápida para video y contenido dinámico.</span>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="tool-icon" aria-hidden="true"><img src="Picsart.png" alt="Picsart"></div>
+      <div>
+        <strong>Picsart</strong>
+        <span>Edición ágil para imágenes, recortes y composiciones sencillas.</span>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="tool-icon" aria-hidden="true"><img src="Lightroom.png" alt="Lightroom"></div>
+      <div>
+        <strong>Lightroom</strong>
+        <span>Ajusto color, luz y ambiente en fotografías.</span>
       </div>
     </div>
   </div>
@@ -1000,8 +1007,8 @@ footer{
   </p>
 
   <div class="contact-actions">
-    <button class="btn primary" onclick="openModal()">Contactarme</button>
-    <button class="btn secondary" onclick="openModal()">Ver datos de contacto</button>
+    <button class="btn primary" onclick="openModal()">Contactar</button>
+    <button class="btn secondary" onclick="goInicio()">Inicio</button>
   </div>
 </section>
 
@@ -1060,6 +1067,10 @@ function closeModal(){
   const modal = document.getElementById('contactModal');
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden', 'true');
+}
+
+function goInicio(){
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 document.getElementById('contactModal').addEventListener('click', function(e){
