@@ -56,7 +56,8 @@ body::before{
   z-index:-1;
 }
 
-img{
+img,
+video{
   max-width:100%;
   display:block;
 }
@@ -299,9 +300,14 @@ nav{
   place-items:center;
   background:linear-gradient(135deg, rgba(150,13,242,.18), rgba(234,207,252,.08));
   border:1px solid rgba(255,255,255,.08);
-  color:var(--c1);
-  font-size:1.1rem;
-  font-weight:800;
+  overflow:hidden;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.preview-badge img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .preview-row p{
@@ -359,6 +365,24 @@ section{
   border-color:rgba(192,110,247,.42);
 }
 
+.card-icon{
+  width:52px;
+  height:52px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  margin-bottom:18px;
+  background:linear-gradient(135deg, rgba(150,13,242,.18), rgba(234,207,252,.08));
+  border:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+}
+
+.card-icon img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
 .card h3{
   margin-bottom:12px;
   font-size:1.22rem;
@@ -383,40 +407,88 @@ section{
   background:linear-gradient(135deg,var(--c8),var(--c5));
   border:1px solid rgba(255,255,255,.06);
   isolation:isolate;
+  transform:translateY(0);
+  transition:transform .3s ease, box-shadow .3s ease;
 }
 
-.project::before{
-  content:"";
+.project__glow{
   position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 25% 20%, rgba(234,207,252,.22), transparent 24%),
-    radial-gradient(circle at 75% 65%, rgba(171,61,245,.18), transparent 26%);
-  opacity:.9;
-}
-
-.project::after{
-  content:attr(data-title);
-  position:absolute;
-  bottom:22px;
-  left:22px;
-  font-size:1.25rem;
-  font-weight:700;
-  z-index:1;
-}
-
-.project img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.85;
-  mix-blend-mode:screen;
-  transform:scale(1.02);
+  inset:-4px;
+  border-radius:inherit;
+  background:conic-gradient(from 0deg, transparent 0deg 28deg, rgba(234,207,252,.95) 40deg, rgba(171,61,245,.95) 95deg, rgba(96,13,242,.95) 150deg, transparent 220deg 360deg);
+  filter:blur(10px);
+  opacity:0;
+  transition:opacity .35s ease;
+  animation:borderSpin 10s linear infinite;
+  z-index:0;
+  pointer-events:none;
 }
 
 .project:hover{
   transform:translateY(-8px);
-  transition:.3s;
+  box-shadow:0 16px 45px rgba(150,13,242,.18);
+}
+
+.project:hover .project__glow{
+  opacity:1;
+}
+
+.project__media{
+  position:absolute;
+  inset:0;
+  z-index:1;
+}
+
+.project__media img,
+.project__media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(1.02) contrast(1.03);
+}
+
+.project__shade{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:linear-gradient(180deg, rgba(8,4,13,.08) 0%, rgba(8,4,13,.26) 45%, rgba(8,4,13,.86) 100%);
+}
+
+.project__label{
+  position:absolute;
+  left:20px;
+  right:20px;
+  bottom:18px;
+  z-index:3;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.project__label strong{
+  font-size:1.18rem;
+  line-height:1.2;
+}
+
+.project__label span{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(8px);
+  color:var(--c1);
+  font-size:.84rem;
+  white-space:nowrap;
+}
+
+@keyframes borderSpin{
+  from{ transform:rotate(0deg); }
+  to{ transform:rotate(360deg); }
 }
 
 .about{
@@ -481,31 +553,33 @@ section{
   border-radius:20px;
   text-align:center;
   border:1px solid rgba(255,255,255,.06);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:160px;
 }
 
-.stat-icon{
-  width:38px;
-  height:38px;
-  margin:0 auto 10px;
-  border-radius:12px;
+.stat__icon{
+  width:40px;
+  height:40px;
+  margin-bottom:10px;
+  border-radius:14px;
   display:grid;
   place-items:center;
   background:linear-gradient(135deg, rgba(150,13,242,.18), rgba(234,207,252,.08));
   border:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
 }
 
-.stat-icon svg{
-  width:20px;
-  height:20px;
-  fill:none;
-  stroke:var(--c1);
-  stroke-width:1.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
+.stat__icon img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .stat h2{
-  font-size:2.2rem;
+  font-size:2rem;
   color:var(--c2);
   margin-bottom:8px;
 }
@@ -642,9 +716,9 @@ footer{
   padding:30px;
   box-shadow:0 30px 90px rgba(0,0,0,.55);
   position:relative;
-  transform:translateY(16px) scale(.98);
+  transform:translateY(18px) scale(.985);
   opacity:0;
-  transition:transform .32s ease, opacity .32s ease;
+  transition:transform .34s ease, opacity .34s ease;
 }
 
 .modal.open .modal-card{
@@ -839,15 +913,21 @@ footer{
 
       <div class="preview">
         <div class="preview-row">
-          <div class="preview-badge">A</div>
+          <div class="preview-badge">
+            <img src="assets/icons/6.png" alt="Ícono decorativo">
+          </div>
           <p>Marca visual enfocada en estética, consistencia y mejor percepción.</p>
         </div>
         <div class="preview-row">
-          <div class="preview-badge">H</div>
+          <div class="preview-badge">
+            <img src="assets/icons/7.png" alt="Ícono decorativo">
+          </div>
           <p>Diseño para comunicar con claridad sin perder carácter ni presencia.</p>
         </div>
         <div class="preview-row">
-          <div class="preview-badge">A</div>
+          <div class="preview-badge">
+            <img src="assets/icons/8.png" alt="Ícono decorativo">
+          </div>
           <p>Servicios ajustados al presupuesto de cada cliente, sin perder calidad.</p>
         </div>
       </div>
@@ -863,26 +943,31 @@ footer{
 
   <div class="grid">
     <div class="card">
+      <div class="card-icon"><img src="assets/icons/1.png" alt="Ícono de logos"></div>
       <h3>Logos</h3>
       <p>Creo símbolos claros para que una marca se reconozca rápido.</p>
     </div>
 
     <div class="card">
+      <div class="card-icon"><img src="assets/icons/2.png" alt="Ícono de redes sociales"></div>
       <h3>Diseño para redes sociales</h3>
       <p>Diseño posts que comunican rápido y se ven ordenados.</p>
     </div>
 
     <div class="card">
+      <div class="card-icon"><img src="assets/icons/3.png" alt="Ícono de identidad visual"></div>
       <h3>Identidad visual</h3>
       <p>Defino colores, tipografías y estilo para que todo combine.</p>
     </div>
 
     <div class="card">
+      <div class="card-icon"><img src="assets/icons/4.png" alt="Ícono de miniatura para videos"></div>
       <h3>Miniatura para Videos</h3>
       <p>Hago miniaturas que llaman la atención y explican el contenido.</p>
     </div>
 
     <div class="card">
+      <div class="card-icon"><img src="assets/icons/5.png" alt="Ícono de motion graphics"></div>
       <h3>Motion Graphics</h3>
       <p>Animaciones simples que hacen ver el contenido más dinámico.</p>
     </div>
@@ -896,20 +981,64 @@ footer{
   </p>
 
   <div class="portfolio">
-    <div class="project" data-title="Logos">
-      <img src="Logo.png" alt="Vista de logos">
+    <div class="project">
+      <div class="project__glow"></div>
+      <div class="project__media">
+        <img src="assets/resources/Logos.png" alt="Proyecto de logos">
+      </div>
+      <div class="project__shade"></div>
+      <div class="project__label">
+        <strong>Logos</strong>
+        <span>Identidad clara</span>
+      </div>
     </div>
-    <div class="project" data-title="Diseño para redes sociales">
-      <img src="Logo.png" alt="Vista de diseño para redes sociales">
+
+    <div class="project">
+      <div class="project__glow"></div>
+      <div class="project__media">
+        <img src="assets/resources/Diseñopararedessociales.png" alt="Proyecto de diseño para redes sociales">
+      </div>
+      <div class="project__shade"></div>
+      <div class="project__label">
+        <strong>Diseño para redes sociales</strong>
+        <span>Contenido visual</span>
+      </div>
     </div>
-    <div class="project" data-title="Identidad visual">
-      <img src="Logo.png" alt="Vista de identidad visual">
+
+    <div class="project">
+      <div class="project__glow"></div>
+      <div class="project__media">
+        <img src="assets/resources/Identidadvisual.png" alt="Proyecto de identidad visual">
+      </div>
+      <div class="project__shade"></div>
+      <div class="project__label">
+        <strong>Identidad visual</strong>
+        <span>Sistema de marca</span>
+      </div>
     </div>
-    <div class="project" data-title="Miniatura para Videos">
-      <img src="Logo.png" alt="Vista de miniatura para videos">
+
+    <div class="project">
+      <div class="project__glow"></div>
+      <div class="project__media">
+        <img src="assets/resources/MiniaturaparaVideos.png" alt="Proyecto de miniatura para videos">
+      </div>
+      <div class="project__shade"></div>
+      <div class="project__label">
+        <strong>Miniatura para Videos</strong>
+        <span>Impacto inmediato</span>
+      </div>
     </div>
-    <div class="project" data-title="Motion Graphics">
-      <img src="Logo.png" alt="Vista de motion graphics">
+
+    <div class="project">
+      <div class="project__glow"></div>
+      <div class="project__media">
+        <video src="assets/resources/MotionGraphics.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="project__shade"></div>
+      <div class="project__label">
+        <strong>Motion Graphics</strong>
+        <span>Movimiento elegante</span>
+      </div>
     </div>
   </div>
 </section>
@@ -924,7 +1053,7 @@ footer{
     <div class="tool">
       <div class="tool-icon" aria-hidden="true"><img src="Adobe Illustrator.png" alt="Adobe Illustrator"></div>
       <div>
-        <strong>Adobe Ilustrator</strong>
+        <strong>Adobe Illustrator</strong>
         <span>Vectores, logos, íconos y sistemas gráficos limpios.</span>
       </div>
     </div>
@@ -998,42 +1127,34 @@ footer{
 
     <div class="stats">
       <div class="stat">
-        <div class="stat-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 3l3 6 6 .9-4.5 4.3 1.1 6.2L12 17.8 6.4 20.4l1.1-6.2L3 9.9 9 9z"></path></svg>
-        </div>
-        <h2>Magia</h2>
-        <p>Enfoque estratégico</p>
+        <div class="stat__icon"><img src="assets/icons/1.png" alt="Ícono de visión"></div>
+        <h2>Visión</h2>
+        <p>Diseño con intención</p>
       </div>
 
       <div class="stat">
-        <div class="stat-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M7 7h10v10H7z"></path><path d="M9 9h6v6H9z"></path></svg>
-        </div>
+        <div class="stat__icon"><img src="assets/icons/2.png" alt="Ícono de experiencia"></div>
         <h2>9+</h2>
         <p>Años diseñando</p>
       </div>
 
       <div class="stat">
-        <div class="stat-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 2v20"></path><path d="M5 7h14"></path><path d="M6 17h12"></path></svg>
-        </div>
+        <div class="stat__icon"><img src="assets/icons/3.png" alt="Ícono de ideas"></div>
         <h2>Ideas</h2>
-        <p>Conceptos en expansión</p>
+        <p>Conceptos que evolucionan</p>
       </div>
 
       <div class="stat">
-        <div class="stat-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 4v16"></path><path d="M6 8h12"></path><path d="M6 16h12"></path></svg>
-        </div>
+        <div class="stat__icon"><img src="assets/icons/4.png" alt="Ícono de energía creativa"></div>
         <h2>24/7</h2>
-        <p>Pensamiento creativo</p>
+        <p>Creatividad constante</p>
       </div>
     </div>
   </div>
 </section>
 
 <section id="contacto" class="contact">
-  <h2>Construyamos algo GRANDE</h2>
+  <h2>Construyamos algo sólido</h2>
   <p>
     Disponible para traer tus ideas mas unicas a la realidad.
   </p>
@@ -1102,9 +1223,8 @@ function closeModal(){
 }
 
 function goInicio(){
-  const target = 0;
-  const duration = 1300;
   const start = window.scrollY || window.pageYOffset;
+  const duration = 1600;
   const startTime = performance.now();
 
   function easeInOutCubic(t){
@@ -1115,7 +1235,7 @@ function goInicio(){
     const elapsed = now - startTime;
     const progress = Math.min(elapsed / duration, 1);
     const eased = easeInOutCubic(progress);
-    window.scrollTo(0, start + (target - start) * eased);
+    window.scrollTo(0, start * (1 - eased));
 
     if(progress < 1){
       requestAnimationFrame(step);
