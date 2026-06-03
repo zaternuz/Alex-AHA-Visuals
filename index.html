@@ -67,6 +67,7 @@ section,footer{position:relative;z-index:3;}
   opacity:1;
   transition:opacity .9s ease, transform .9s ease, filter .25s ease;
   filter:drop-shadow(0 14px 32px rgba(150,13,242,.38));
+  will-change:transform, opacity, left, top;
 }
 .floating-icon:active{cursor:grabbing;}
 .floating-icon.is-dragging{z-index:80;filter:drop-shadow(0 16px 42px rgba(234,207,252,.22));}
@@ -81,7 +82,7 @@ section,footer{position:relative;z-index:3;}
   height:100%;
   object-fit:contain;
   opacity:1;
-  mix-blend-mode:screen;
+  mix-blend-mode:normal;
 }
 .floating-icon.is-dragging .floating-icon__inner{animation:none;}
 
@@ -508,6 +509,9 @@ footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:fl
 <script>
 const floatingLayer = document.getElementById('floatingDecorLayer');
 const ornamentFiles = ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png'];
+const MAX_VISIBLE_DECOR = 3;
+let activeDecorCount = 0;
+let decorSpawnTimer = null;
 
 function openModal(){
   const modal = document.getElementById('contactModal');
@@ -572,54 +576,86 @@ const observer = new IntersectionObserver(entries => {
 },{threshold:0.15});
 document.querySelectorAll('.card,.project,.stat,.about-box,.tool,.hero-card').forEach(el => observer.observe(el));
 
-function createFloatingIcon(file, index){
+function rand(min, max){
+  return Math.random() * (max - min) + min;
+}
+
+function scheduleDecorSpawn(){
+  clearTimeout(decorSpawnTimer);
+  decorSpawnTimer = setTimeout(() => {
+    if(activeDecorCount < MAX_VISIBLE_DECOR){
+      spawnFloatingIcon();
+    }
+    scheduleDecorSpawn();
+  }, rand(700, 3200));
+}
+
+function spawnFloatingIcon(){
+  if(activeDecorCount >= MAX_VISIBLE_DECOR) return;
+
+  const file = ornamentFiles[Math.floor(Math.random() * ornamentFiles.length)];
   const el = document.createElement('div');
   el.className = 'floating-icon';
-  el.dataset.index = String(index);
-  el.style.left = `${8 + ((index * 11) % 76)}vw`;
-  el.style.top = `${10 + ((index * 13) % 68)}vh`;
-  el.style.width = `${132}px`;
-  el.style.height = `${132}px`;
   el.innerHTML = `<div class="floating-icon__inner"><img src="assets/icons/${file}" alt="" draggable="false"></div>`;
+  floatingLayer.appendChild(el);
+  activeDecorCount += 1;
+
+  const inner = el.querySelector('.floating-icon__inner');
+  inner.style.animationDuration = `${7.5 + Math.random() * 3.5}s`;
+  inner.style.animationDelay = `${-(Math.random() * 3)}s`;
 
   let x = 0;
   let y = 0;
   let originX = 0;
   let originY = 0;
   let dragging = false;
+  let removed = false;
+  let lifetimeTimer = null;
   let removalTimer = null;
-  let floatTimer = null;
-  const inner = el.querySelector('.floating-icon__inner');
-  inner.style.animationDuration = `${7.5 + index * 0.35}s`;
-  inner.style.animationDelay = `${-index * .4}s`;
+  let endAfterDrag = false;
 
   const placeAt = (nx, ny) => {
-    const maxX = window.innerWidth - el.offsetWidth - 10;
-    const maxY = window.innerHeight - el.offsetHeight - 10;
+    const maxX = Math.max(10, window.innerWidth - el.offsetWidth - 10);
+    const maxY = Math.max(10, window.innerHeight - el.offsetHeight - 10);
     x = Math.max(10, Math.min(nx, maxX));
     y = Math.max(10, Math.min(ny, maxY));
     el.style.left = `${x}px`;
     el.style.top = `${y}px`;
   };
 
-  const startFloating = () => {
-    el.style.opacity = '1';
-    el.style.transform = 'translateZ(0)';
-    clearTimeout(floatTimer);
+  const cleanup = () => {
+    if(removed) return;
+    removed = true;
+    clearTimeout(lifetimeTimer);
     clearTimeout(removalTimer);
-    floatTimer = setTimeout(() => {
-      if(!dragging){
-        el.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(-24px) scale(.92)';
-        removalTimer = setTimeout(() => el.remove(), 1250);
+    activeDecorCount = Math.max(0, activeDecorCount - 1);
+    el.remove();
+  };
+
+  const fadeAndRemove = () => {
+    if(removed) return;
+    el.style.transition = 'opacity 1.15s ease, transform 1.15s ease';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(-22px) scale(.92)';
+    removalTimer = setTimeout(cleanup, 1200);
+  };
+
+  const scheduleLife = () => {
+    clearTimeout(lifetimeTimer);
+    const lifeMs = rand(9000, 22000);
+    lifetimeTimer = setTimeout(() => {
+      if(dragging){
+        endAfterDrag = true;
+        return;
       }
-    }, 18000 + index * 1500);
+      fadeAndRemove();
+    }, lifeMs);
   };
 
   el.addEventListener('pointerdown', (e) => {
     dragging = true;
-    clearTimeout(floatTimer);
+    endAfterDrag = false;
+    clearTimeout(lifetimeTimer);
     clearTimeout(removalTimer);
     el.classList.add('is-dragging');
     el.setPointerCapture(e.pointerId);
@@ -638,24 +674,29 @@ function createFloatingIcon(file, index){
     if(!dragging) return;
     dragging = false;
     el.classList.remove('is-dragging');
-    el.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+    el.style.transition = 'opacity 1.15s ease, transform 1.15s ease';
     el.style.zIndex = '20';
     el.style.transform = 'translateZ(0)';
-    startFloating();
+    if(endAfterDrag){
+      fadeAndRemove();
+      return;
+    }
+    scheduleLife();
   }
 
   el.addEventListener('pointerup', finishDrag);
   el.addEventListener('pointercancel', finishDrag);
   el.addEventListener('lostpointercapture', finishDrag);
 
-  floatingLayer.appendChild(el);
   requestAnimationFrame(() => {
-    placeAt((window.innerWidth * 0.08) + ((index * 137) % (window.innerWidth * 0.72)), (window.innerHeight * 0.16) + ((index * 89) % (window.innerHeight * 0.56)));
-    startFloating();
+    const startX = rand(10, Math.max(12, window.innerWidth - 142));
+    const startY = rand(10, Math.max(12, window.innerHeight - 142));
+    placeAt(startX, startY);
+    scheduleLife();
   });
 }
 
-ornamentFiles.forEach(createFloatingIcon);
+scheduleDecorSpawn();
 </script>
 
 </body>
