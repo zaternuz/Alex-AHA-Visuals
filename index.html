@@ -38,6 +38,7 @@ html{
 }
 
 body{
+  position:relative;
   font-family:'Inter',sans-serif;
   background:var(--bg);
   color:var(--text);
@@ -65,6 +66,44 @@ video{
 button,
 a{
   -webkit-tap-highlight-color:transparent;
+}
+
+section,
+footer{
+  position:relative;
+  z-index:3;
+}
+
+.decor-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:4;
+}
+
+.decor-layer img{
+  position:absolute;
+  width:64px;
+  height:64px;
+  object-fit:contain;
+  opacity:.14;
+  filter:drop-shadow(0 10px 24px rgba(150,13,242,.24));
+  mix-blend-mode:screen;
+  animation:floatDrift 9s ease-in-out infinite;
+}
+
+.decor-1{ top:120px; left:3%; transform:rotate(-14deg); animation-duration:10s; }
+.decor-2{ top:210px; right:5%; transform:rotate(8deg); animation-duration:11s; animation-delay:-2s; }
+.decor-3{ top:610px; left:6%; transform:rotate(12deg); animation-duration:12s; animation-delay:-4s; }
+.decor-4{ top:1120px; right:3%; transform:rotate(-10deg); animation-duration:10.5s; animation-delay:-1s; }
+.decor-5{ top:1550px; left:4%; transform:rotate(7deg); animation-duration:9.5s; animation-delay:-3s; }
+.decor-6{ top:1980px; right:7%; transform:rotate(-7deg); animation-duration:12.5s; animation-delay:-2.5s; }
+.decor-7{ top:2420px; left:2.5%; transform:rotate(11deg); animation-duration:11.2s; animation-delay:-5s; }
+.decor-8{ top:2920px; right:4.5%; transform:rotate(-12deg); animation-duration:10.8s; animation-delay:-1.6s; }
+
+@keyframes floatDrift{
+  0%,100%{ transform:translateY(0) rotate(var(--r,0deg)); }
+  50%{ transform:translateY(-14px) rotate(var(--r,0deg)); }
 }
 
 nav{
@@ -282,37 +321,11 @@ nav{
 }
 
 .preview-row{
-  display:grid;
-  grid-template-columns:auto 1fr;
-  gap:14px;
-  align-items:center;
   padding:14px 16px;
   border-radius:18px;
   background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.05);
-}
-
-.preview-badge{
-  width:44px;
-  height:44px;
-  border-radius:14px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg, rgba(150,13,242,.18), rgba(234,207,252,.08));
-  border:1px solid rgba(255,255,255,.08);
-  overflow:hidden;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
-}
-
-.preview-badge img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.preview-row p{
   color:var(--muted);
-  font-size:.95rem;
   line-height:1.55;
 }
 
@@ -365,24 +378,6 @@ section{
   border-color:rgba(192,110,247,.42);
 }
 
-.card-icon{
-  width:52px;
-  height:52px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  margin-bottom:18px;
-  background:linear-gradient(135deg, rgba(150,13,242,.18), rgba(234,207,252,.08));
-  border:1px solid rgba(255,255,255,.08);
-  overflow:hidden;
-}
-
-.card-icon img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
 .card h3{
   margin-bottom:12px;
   font-size:1.22rem;
@@ -413,23 +408,46 @@ section{
 
 .project__glow{
   position:absolute;
-  inset:-4px;
+  inset:0;
   border-radius:inherit;
-  background:conic-gradient(from 0deg, transparent 0deg 28deg, rgba(234,207,252,.95) 40deg, rgba(171,61,245,.95) 95deg, rgba(96,13,242,.95) 150deg, transparent 220deg 360deg);
-  filter:blur(10px);
+  background:
+    radial-gradient(circle at 20% 25%, rgba(234,207,252,.18), transparent 30%),
+    radial-gradient(circle at 78% 70%, rgba(171,61,245,.16), transparent 28%);
+  filter:blur(14px);
+  opacity:.42;
+  pointer-events:none;
+  z-index:0;
+}
+
+.project::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:2px;
+  border-radius:inherit;
+  background:conic-gradient(from 0deg,
+    rgba(234,207,252,0) 0deg 22deg,
+    rgba(234,207,252,.92) 35deg,
+    rgba(171,61,245,.96) 92deg,
+    rgba(96,13,242,.96) 146deg,
+    rgba(234,207,252,.9) 220deg,
+    rgba(234,207,252,0) 300deg 360deg);
   opacity:0;
   transition:opacity .35s ease;
-  animation:borderSpin 10s linear infinite;
-  z-index:0;
+  animation:borderSpin 16s linear infinite;
   pointer-events:none;
+  z-index:5;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
 }
 
 .project:hover{
   transform:translateY(-8px);
-  box-shadow:0 16px 45px rgba(150,13,242,.18);
+  box-shadow:0 0 0 1px rgba(234,207,252,.12), 0 16px 45px rgba(150,13,242,.18), 0 0 36px rgba(171,61,245,.18);
 }
 
-.project:hover .project__glow{
+.project:hover::before{
   opacity:1;
 }
 
@@ -452,25 +470,31 @@ section{
   position:absolute;
   inset:0;
   z-index:2;
-  background:linear-gradient(180deg, rgba(8,4,13,.08) 0%, rgba(8,4,13,.26) 45%, rgba(8,4,13,.86) 100%);
+  background:linear-gradient(180deg, rgba(8,4,13,.06) 0%, rgba(8,4,13,.18) 42%, rgba(8,4,13,.84) 100%);
 }
 
 .project__label{
   position:absolute;
-  left:20px;
-  right:20px;
-  bottom:18px;
+  left:16px;
+  right:16px;
+  bottom:16px;
   z-index:3;
   display:flex;
   align-items:flex-end;
   justify-content:space-between;
   gap:12px;
   flex-wrap:wrap;
+  padding:14px 15px 13px;
+  border-radius:18px;
+  background:linear-gradient(180deg, rgba(171,61,245,.08) 0%, rgba(8,4,13,.78) 76%);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.08);
 }
 
 .project__label strong{
   font-size:1.18rem;
   line-height:1.2;
+  text-shadow:0 2px 12px rgba(0,0,0,.35);
 }
 
 .project__label span{
@@ -478,7 +502,7 @@ section{
   align-items:center;
   padding:8px 12px;
   border-radius:999px;
-  background:rgba(255,255,255,.06);
+  background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.08);
   backdrop-filter:blur(8px);
   color:var(--c1);
@@ -558,24 +582,6 @@ section{
   align-items:center;
   justify-content:center;
   min-height:160px;
-}
-
-.stat__icon{
-  width:40px;
-  height:40px;
-  margin-bottom:10px;
-  border-radius:14px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg, rgba(150,13,242,.18), rgba(234,207,252,.08));
-  border:1px solid rgba(255,255,255,.08);
-  overflow:hidden;
-}
-
-.stat__icon img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
 }
 
 .stat h2{
@@ -861,10 +867,27 @@ footer{
   footer{
     padding:28px 6%;
   }
+
+  .decor-layer img{
+    width:46px;
+    height:46px;
+    opacity:.10;
+  }
 }
 </style>
 </head>
 <body>
+
+<div class="decor-layer" aria-hidden="true">
+  <img class="decor-1" src="assets/icons/1.png" alt="">
+  <img class="decor-2" src="assets/icons/2.png" alt="">
+  <img class="decor-3" src="assets/icons/3.png" alt="">
+  <img class="decor-4" src="assets/icons/4.png" alt="">
+  <img class="decor-5" src="assets/icons/5.png" alt="">
+  <img class="decor-6" src="assets/icons/6.png" alt="">
+  <img class="decor-7" src="assets/icons/7.png" alt="">
+  <img class="decor-8" src="assets/icons/8.png" alt="">
+</div>
 
 <nav>
   <div class="brand" id="inicio">
@@ -912,24 +935,9 @@ footer{
       </div>
 
       <div class="preview">
-        <div class="preview-row">
-          <div class="preview-badge">
-            <img src="assets/icons/6.png" alt="Ícono decorativo">
-          </div>
-          <p>Marca visual enfocada en estética, consistencia y mejor percepción.</p>
-        </div>
-        <div class="preview-row">
-          <div class="preview-badge">
-            <img src="assets/icons/7.png" alt="Ícono decorativo">
-          </div>
-          <p>Diseño para comunicar con claridad sin perder carácter ni presencia.</p>
-        </div>
-        <div class="preview-row">
-          <div class="preview-badge">
-            <img src="assets/icons/8.png" alt="Ícono decorativo">
-          </div>
-          <p>Servicios ajustados al presupuesto de cada cliente, sin perder calidad.</p>
-        </div>
+        <div class="preview-row">Marca visual enfocada en estética, consistencia y mejor percepción.</div>
+        <div class="preview-row">Diseño para comunicar con claridad sin perder carácter ni presencia.</div>
+        <div class="preview-row">Servicios ajustados al presupuesto de cada cliente, sin perder calidad.</div>
       </div>
     </div>
   </div>
@@ -943,31 +951,26 @@ footer{
 
   <div class="grid">
     <div class="card">
-      <div class="card-icon"><img src="assets/icons/1.png" alt="Ícono de logos"></div>
       <h3>Logos</h3>
       <p>Creo símbolos claros para que una marca se reconozca rápido.</p>
     </div>
 
     <div class="card">
-      <div class="card-icon"><img src="assets/icons/2.png" alt="Ícono de redes sociales"></div>
       <h3>Diseño para redes sociales</h3>
       <p>Diseño posts que comunican rápido y se ven ordenados.</p>
     </div>
 
     <div class="card">
-      <div class="card-icon"><img src="assets/icons/3.png" alt="Ícono de identidad visual"></div>
       <h3>Identidad visual</h3>
       <p>Defino colores, tipografías y estilo para que todo combine.</p>
     </div>
 
     <div class="card">
-      <div class="card-icon"><img src="assets/icons/4.png" alt="Ícono de miniatura para videos"></div>
       <h3>Miniatura para Videos</h3>
       <p>Hago miniaturas que llaman la atención y explican el contenido.</p>
     </div>
 
     <div class="card">
-      <div class="card-icon"><img src="assets/icons/5.png" alt="Ícono de motion graphics"></div>
       <h3>Motion Graphics</h3>
       <p>Animaciones simples que hacen ver el contenido más dinámico.</p>
     </div>
@@ -1127,25 +1130,21 @@ footer{
 
     <div class="stats">
       <div class="stat">
-        <div class="stat__icon"><img src="assets/icons/1.png" alt="Ícono de visión"></div>
         <h2>Visión</h2>
         <p>Diseño con intención</p>
       </div>
 
       <div class="stat">
-        <div class="stat__icon"><img src="assets/icons/2.png" alt="Ícono de experiencia"></div>
         <h2>9+</h2>
         <p>Años diseñando</p>
       </div>
 
       <div class="stat">
-        <div class="stat__icon"><img src="assets/icons/3.png" alt="Ícono de ideas"></div>
         <h2>Ideas</h2>
         <p>Conceptos que evolucionan</p>
       </div>
 
       <div class="stat">
-        <div class="stat__icon"><img src="assets/icons/4.png" alt="Ícono de energía creativa"></div>
         <h2>24/7</h2>
         <p>Creatividad constante</p>
       </div>
