@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ALEX AHA VISUALS</title>
-
+<link rel="icon" type="image/png" href="Logo.png">
+<link rel="apple-touch-icon" href="Logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -17,7 +18,6 @@
   --c6:#780AC2;
   --c7:#5A0891;
   --c8:#3C0561;
-
   --bg:#08040d;
   --card:#12081d;
   --card-2:#160a24;
@@ -26,18 +26,8 @@
   --line:rgba(255,255,255,.08);
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  scroll-behavior:smooth;
-}
-
-html{
-  scroll-behavior:smooth;
-  scroll-padding-top:110px;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+html{scroll-behavior:smooth;scroll-padding-top:110px;}
 body{
   position:relative;
   font-family:'Inter',sans-serif;
@@ -45,7 +35,6 @@ body{
   color:var(--text);
   overflow-x:hidden;
 }
-
 body::before{
   content:"";
   position:fixed;
@@ -57,54 +46,48 @@ body::before{
   pointer-events:none;
   z-index:-1;
 }
+img,video{max-width:100%;display:block;}
+a,button{-webkit-tap-highlight-color:transparent;}
+section,footer{position:relative;z-index:3;}
 
-img,
-video{
-  max-width:100%;
-  display:block;
-}
-
-button,
-a{
-  -webkit-tap-highlight-color:transparent;
-}
-
-section,
-footer{
-  position:relative;
-  z-index:3;
-}
-
-.decor-layer{
-  position:absolute;
+.floating-decor-layer{
+  position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:4;
+  z-index:6;
 }
-
-.decor-layer img{
-  position:absolute;
-  width:128px;
-  height:128px;
+.floating-icon{
+  position:fixed;
+  width:132px;
+  height:132px;
+  pointer-events:auto;
+  touch-action:none;
+  user-select:none;
+  cursor:grab;
+  opacity:1;
+  transition:opacity .9s ease, transform .9s ease, filter .25s ease;
+  filter:drop-shadow(0 14px 32px rgba(150,13,242,.38));
+}
+.floating-icon:active{cursor:grabbing;}
+.floating-icon.is-dragging{z-index:80;filter:drop-shadow(0 16px 42px rgba(234,207,252,.22));}
+.floating-icon__inner{
+  width:100%;
+  height:100%;
+  animation:iconFloat 8s ease-in-out infinite;
+  transform-origin:center center;
+}
+.floating-icon__inner img{
+  width:100%;
+  height:100%;
   object-fit:contain;
-  opacity:.21;
-  filter:drop-shadow(0 10px 24px rgba(150,13,242,.3));
+  opacity:1;
   mix-blend-mode:screen;
-  animation:floatDrift 9s ease-in-out infinite;
 }
+.floating-icon.is-dragging .floating-icon__inner{animation:none;}
 
-.decor-1{ top:120px; left:3%;  --r:-14deg; animation-duration:10s; }
-.decor-2{ top:210px; right:5%; --r:8deg; animation-duration:11s; animation-delay:-2s; }
-.decor-3{ top:610px; left:6%;  --r:12deg; animation-duration:12s; animation-delay:-4s; }
-.decor-4{ top:1120px; right:3%; --r:-10deg; animation-duration:10.5s; animation-delay:-1s; }
-.decor-5{ top:1550px; left:4%;  --r:7deg; animation-duration:9.5s; animation-delay:-3s; }
-.decor-6{ top:1980px; right:7%; --r:-7deg; animation-duration:12.5s; animation-delay:-2.5s; }
-.decor-7{ top:2420px; left:2.5%; --r:11deg; animation-duration:11.2s; animation-delay:-5s; }
-.decor-8{ top:2920px; right:4.5%; --r:-12deg; animation-duration:10.8s; animation-delay:-1.6s; }
-
-@keyframes floatDrift{
-  0%,100%{ transform:translateY(0) rotate(var(--r,0deg)); }
-  50%{ transform:translateY(-14px) rotate(var(--r,0deg)); }
+@keyframes iconFloat{
+  0%,100%{transform:translateY(0) rotate(-2deg);}
+  50%{transform:translateY(-12px) rotate(2deg);}
 }
 
 nav{
@@ -121,7 +104,6 @@ nav{
   border-bottom:1px solid var(--line);
   z-index:100;
 }
-
 .brand{
   display:flex;
   align-items:center;
@@ -132,46 +114,12 @@ nav{
   color:inherit;
   transition:.28s ease;
 }
-
-.brand:hover{
-  filter:drop-shadow(0 0 18px rgba(234,207,252,.38));
-  text-shadow:0 0 16px rgba(234,207,252,.2);
-}
-
-.brand img{
-  width:42px;
-  height:42px;
-  object-fit:contain;
-  flex:0 0 auto;
-  filter: drop-shadow(0 10px 25px rgba(150,13,242,.25));
-}
-
-.brand span{
-  font-size:1.05rem;
-  font-weight:800;
-  letter-spacing:.12em;
-  white-space:nowrap;
-}
-
-.nav-links{
-  display:flex;
-  gap:28px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:white;
-  font-size:.95rem;
-  opacity:.88;
-  transition:.25s;
-}
-
-.nav-links a:hover{
-  opacity:1;
-  color:var(--c2);
-}
+.brand:hover{filter:drop-shadow(0 0 18px rgba(234,207,252,.38));text-shadow:0 0 16px rgba(234,207,252,.2);}
+.brand img{width:42px;height:42px;object-fit:contain;flex:0 0 auto;filter:drop-shadow(0 10px 25px rgba(150,13,242,.25));}
+.brand span{font-size:1.05rem;font-weight:800;letter-spacing:.12em;white-space:nowrap;}
+.nav-links{display:flex;gap:28px;flex-wrap:wrap;justify-content:flex-end;}
+.nav-links a{text-decoration:none;color:white;font-size:.95rem;opacity:.88;transition:.25s;}
+.nav-links a:hover{opacity:1;color:var(--c2);}
 
 .hero{
   min-height:100vh;
@@ -181,11 +129,7 @@ nav{
   gap:60px;
   padding:120px 8% 60px;
 }
-
-.hero-content{
-  max-width:850px;
-}
-
+.hero-content{max-width:850px;}
 .tag{
   display:inline-flex;
   align-items:center;
@@ -197,43 +141,11 @@ nav{
   color:var(--c2);
   background:rgba(255,255,255,.02);
 }
-
-.tag::before{
-  content:"";
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--c4);
-  box-shadow:0 0 0 4px rgba(171,61,245,.14);
-}
-
-.hero h1{
-  font-size:clamp(3rem,8vw,7rem);
-  line-height:.92;
-  margin-bottom:22px;
-  letter-spacing:-.04em;
-}
-
-.gradient{
-  background:linear-gradient(90deg,var(--c1),var(--c4));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.hero p{
-  font-size:1.12rem;
-  line-height:1.85;
-  max-width:720px;
-  color:var(--muted);
-  margin-bottom:36px;
-}
-
-.buttons{
-  display:flex;
-  gap:16px;
-  flex-wrap:wrap;
-}
-
+.tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c4);box-shadow:0 0 0 4px rgba(171,61,245,.14);}
+.hero h1{font-size:clamp(3rem,8vw,7rem);line-height:.92;margin-bottom:22px;letter-spacing:-.04em;}
+.gradient{background:linear-gradient(90deg,var(--c1),var(--c4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:1.12rem;line-height:1.85;max-width:720px;color:var(--muted);margin-bottom:36px;}
+.buttons{display:flex;gap:16px;flex-wrap:wrap;}
 .btn{
   appearance:none;
   border:0;
@@ -249,31 +161,11 @@ nav{
   justify-content:center;
   gap:10px;
 }
+.primary{background:linear-gradient(135deg,var(--c4),var(--c5));color:white;box-shadow:0 18px 40px rgba(150,13,242,.22);}
+.secondary{border:1px solid var(--line);color:white;background:rgba(255,255,255,.02);}
+.btn:hover{transform:translateY(-4px);}
 
-.primary{
-  background:linear-gradient(135deg,var(--c4),var(--c5));
-  color:white;
-  box-shadow:0 18px 40px rgba(150,13,242,.22);
-}
-
-.secondary{
-  border:1px solid var(--line);
-  color:white;
-  background:rgba(255,255,255,.02);
-}
-
-.btn:hover{
-  transform:translateY(-4px);
-}
-
-.hero-art{
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:520px;
-}
-
+.hero-art{position:relative;display:flex;align-items:center;justify-content:center;min-height:520px;}
 .hero-card{
   width:min(100%, 420px);
   background:linear-gradient(180deg, rgba(18,8,29,.88), rgba(18,8,29,.56));
@@ -281,12 +173,11 @@ nav{
   border-radius:32px;
   padding:28px;
   box-shadow:0 30px 80px rgba(0,0,0,.35);
-  backdrop-filter: blur(10px);
+  backdrop-filter:blur(10px);
   position:relative;
   overflow:hidden;
   transition:box-shadow .3s ease, border-color .3s ease, transform .3s ease, filter .3s ease;
 }
-
 .hero-card::before{
   content:"";
   position:absolute;
@@ -298,7 +189,6 @@ nav{
   opacity:.6;
   transition:opacity .3s ease;
 }
-
 .hero-card::after{
   content:"";
   position:absolute;
@@ -309,88 +199,25 @@ nav{
   transition:opacity .3s ease;
   pointer-events:none;
 }
-
 .hero-card:hover{
   border-color:rgba(234,207,252,.28);
   box-shadow:0 28px 90px rgba(0,0,0,.48), 0 0 54px rgba(171,61,245,.22), 0 0 24px rgba(234,207,252,.16);
   filter:saturate(1.05);
   transform:translateY(-2px);
 }
+.hero-card:hover::before{opacity:1;}
+.hero-card:hover::after{opacity:1;}
+.hero-logo{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+.hero-logo img{width:74px;height:74px;object-fit:contain;flex:0 0 auto;filter:drop-shadow(0 12px 25px rgba(150,13,242,.3));}
+.hero-logo strong{display:block;font-size:1.15rem;letter-spacing:.08em;}
+.hero-logo span{display:block;color:var(--muted);margin-top:4px;font-size:.95rem;}
+.preview{display:grid;gap:14px;margin-top:10px;}
+.preview-row{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);color:var(--muted);line-height:1.55;}
 
-.hero-card:hover::before{
-  opacity:1;
-}
-
-.hero-card:hover::after{
-  opacity:1;
-}
-
-.hero-logo{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  margin-bottom:24px;
-}
-
-.hero-logo img{
-  width:74px;
-  height:74px;
-  object-fit:contain;
-  flex:0 0 auto;
-  filter: drop-shadow(0 12px 25px rgba(150,13,242,.3));
-}
-
-.hero-logo strong{
-  display:block;
-  font-size:1.15rem;
-  letter-spacing:.08em;
-}
-
-.hero-logo span{
-  display:block;
-  color:var(--muted);
-  margin-top:4px;
-  font-size:.95rem;
-}
-
-.preview{
-  display:grid;
-  gap:14px;
-  margin-top:10px;
-}
-
-.preview-row{
-  padding:14px 16px;
-  border-radius:18px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.05);
-  color:var(--muted);
-  line-height:1.55;
-}
-
-section{
-  padding:108px 8%;
-}
-
-.section-title{
-  font-size:clamp(2rem,4vw,3.2rem);
-  margin-bottom:18px;
-  letter-spacing:-.03em;
-}
-
-.section-sub{
-  color:var(--muted);
-  margin-bottom:54px;
-  max-width:760px;
-  line-height:1.8;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-}
-
+section{padding:108px 8%;}
+.section-title{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:18px;letter-spacing:-.03em;}
+.section-sub{color:var(--muted);margin-bottom:54px;max-width:760px;line-height:1.8;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;}
 .card{
   background:linear-gradient(180deg,var(--card),var(--card-2));
   padding:28px;
@@ -400,23 +227,8 @@ section{
   position:relative;
   overflow:hidden;
 }
-
-.card::after{
-  content:"";
-  position:absolute;
-  inset:auto -20% -40% auto;
-  width:160px;
-  height:160px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(171,61,245,.16), transparent 70%);
-  pointer-events:none;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  border-color:rgba(192,110,247,.42);
-}
-
+.card::after{content:"";position:absolute;inset:auto -20% -40% auto;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle, rgba(171,61,245,.16), transparent 70%);pointer-events:none;}
+.card:hover{transform:translateY(-8px);border-color:rgba(192,110,247,.42);}
 .card-icon{
   width:54px;
   height:54px;
@@ -429,33 +241,11 @@ section{
   overflow:hidden;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
 }
+.card-icon svg{width:30px;height:30px;fill:none;stroke:var(--c1);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.card h3{margin-bottom:12px;font-size:1.22rem;}
+.card p{color:var(--muted);line-height:1.75;}
 
-.card-icon svg{
-  width:30px;
-  height:30px;
-  fill:none;
-  stroke:var(--c1);
-  stroke-width:1.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.card h3{
-  margin-bottom:12px;
-  font-size:1.22rem;
-}
-
-.card p{
-  color:var(--muted);
-  line-height:1.75;
-}
-
-.portfolio{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:22px;
-}
-
+.portfolio{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
 .project{
   min-height:280px;
   border-radius:24px;
@@ -467,32 +257,14 @@ section{
   transform:translateY(0);
   transition:transform .3s ease, box-shadow .3s ease;
 }
-
-.project__glow{
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  background:
-    radial-gradient(circle at 20% 25%, rgba(234,207,252,.18), transparent 30%),
-    radial-gradient(circle at 78% 70%, rgba(171,61,245,.16), transparent 28%);
-  filter:blur(14px);
-  opacity:.42;
-  pointer-events:none;
-  z-index:0;
-}
-
+.project__glow{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 20% 25%, rgba(234,207,252,.18), transparent 30%), radial-gradient(circle at 78% 70%, rgba(171,61,245,.16), transparent 28%);filter:blur(14px);opacity:.42;pointer-events:none;z-index:0;}
 .project::before{
   content:"";
   position:absolute;
   inset:0;
   padding:2px;
   border-radius:inherit;
-  background:linear-gradient(90deg,
-    rgba(234,207,252,0) 0%,
-    rgba(234,207,252,.95) 25%,
-    rgba(171,61,245,.95) 50%,
-    rgba(96,13,242,.95) 75%,
-    rgba(234,207,252,0) 100%);
+  background:linear-gradient(90deg, rgba(234,207,252,0) 0%, rgba(234,207,252,.95) 25%, rgba(171,61,245,.95) 50%, rgba(96,13,242,.95) 75%, rgba(234,207,252,0) 100%);
   background-size:300% 300%;
   opacity:0;
   transition:opacity .35s ease;
@@ -503,51 +275,12 @@ section{
   -webkit-mask-composite:xor;
   mask-composite:exclude;
 }
-
-.project::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  background:radial-gradient(circle at 50% 50%, rgba(234,207,252,.14), transparent 52%);
-  opacity:0;
-  transition:opacity .35s ease;
-  pointer-events:none;
-  z-index:4;
-}
-
-.project:hover{
-  transform:translateY(-8px);
-  box-shadow:0 0 0 1px rgba(234,207,252,.12), 0 16px 45px rgba(150,13,242,.18), 0 0 36px rgba(171,61,245,.18);
-}
-
-.project:hover::before,
-.project:hover::after{
-  opacity:1;
-}
-
-.project__media{
-  position:absolute;
-  inset:0;
-  z-index:1;
-}
-
-.project__media img,
-.project__media video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  filter:saturate(1.02) contrast(1.03);
-}
-
-.project__shade{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  background:linear-gradient(180deg, rgba(8,4,13,.05) 0%, rgba(8,4,13,.16) 42%, rgba(8,4,13,.86) 100%);
-}
-
+.project::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 50% 50%, rgba(234,207,252,.14), transparent 52%);opacity:0;transition:opacity .35s ease;pointer-events:none;z-index:4;}
+.project:hover{transform:translateY(-8px);box-shadow:0 0 0 1px rgba(234,207,252,.12), 0 16px 45px rgba(150,13,242,.18), 0 0 36px rgba(171,61,245,.18);}
+.project:hover::before,.project:hover::after{opacity:1;}
+.project__media{position:absolute;inset:0;z-index:1;}
+.project__media img,.project__media video{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.02) contrast(1.03);}
+.project__shade{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg, rgba(8,4,13,.05) 0%, rgba(8,4,13,.16) 42%, rgba(8,4,13,.86) 100%);}
 .project__label{
   position:absolute;
   left:16px;
@@ -565,413 +298,82 @@ section{
   backdrop-filter:blur(10px);
   border:1px solid rgba(255,255,255,.08);
 }
+.project__label strong{font-size:1.18rem;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.35);}
+.project__label span{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);color:var(--c1);font-size:.84rem;white-space:nowrap;}
+@keyframes borderLight{0%{background-position:0% 50%;}100%{background-position:300% 50%;}}
 
-.project__label strong{
-  font-size:1.18rem;
-  line-height:1.2;
-  text-shadow:0 2px 12px rgba(0,0,0,.35);
+.about{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:stretch;}
+.about-box{background:var(--card);padding:36px;border-radius:24px;border:1px solid rgba(255,255,255,.06);}
+.about-box p{line-height:1.9;color:var(--muted);}
+.about-brand{margin-top:28px;display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
+.about-brand img{width:58px;height:58px;object-fit:contain;}
+.about-brand strong{display:block;font-size:1rem;letter-spacing:.08em;}
+.about-brand span{display:block;color:var(--muted);margin-top:4px;font-size:.92rem;line-height:1.4;}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.stat{background:linear-gradient(180deg,var(--card),var(--card-2));padding:28px 22px;border-radius:20px;text-align:center;border:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;}
+.stat h2{font-size:2rem;color:var(--c2);margin-bottom:8px;}
+.stat p{color:var(--muted);line-height:1.6;}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
+.tool{background:linear-gradient(180deg,var(--card),var(--card-2));padding:24px;border-radius:22px;border:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:16px;transition:.3s;}
+.tool:hover{transform:translateY(-6px);border-color:rgba(192,110,247,.42);}
+.tool-icon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;flex:0 0 auto;background:linear-gradient(135deg, rgba(150,13,242,.18), rgba(234,207,252,.08));border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);overflow:hidden;}
+.tool-icon img{width:100%;height:100%;object-fit:cover;}
+.tool strong{display:block;font-size:1.05rem;margin-bottom:4px;}
+.tool span{color:var(--muted);font-size:.95rem;line-height:1.45;}
+.contact{text-align:center;}
+.contact h2{font-size:clamp(2.4rem,5vw,4rem);margin-bottom:18px;}
+.contact p{max-width:680px;margin:0 auto 34px;color:var(--muted);line-height:1.85;}
+.contact-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;}
+footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.footer-brand{display:flex;align-items:center;gap:12px;}
+.footer-brand img{width:34px;height:34px;object-fit:contain;}
+
+.modal{display:flex;position:fixed;inset:0;background:rgba(0,0,0,.74);backdrop-filter:blur(8px);align-items:center;justify-content:center;z-index:1000;padding:20px;opacity:0;pointer-events:none;transition:opacity .28s ease;}
+.modal.open{opacity:1;pointer-events:auto;}
+.modal-card{width:min(92vw, 560px);background:linear-gradient(180deg, rgba(18,8,29,.98), rgba(18,8,29,.92));border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:30px;box-shadow:0 30px 90px rgba(0,0,0,.55);position:relative;transform:translateY(18px) scale(.985);opacity:0;transition:transform .34s ease, opacity .34s ease;}
+.modal.open .modal-card{transform:translateY(0) scale(1);opacity:1;}
+.modal-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;}
+.modal-title{display:flex;align-items:center;gap:14px;}
+.modal-title img{width:46px;height:46px;object-fit:contain;}
+.modal-title strong{display:block;font-size:1.15rem;letter-spacing:.06em;}
+.modal-title span{display:block;color:var(--muted);font-size:.92rem;margin-top:4px;}
+.close-btn{appearance:none;border:0;background:rgba(255,255,255,.06);color:white;width:42px;height:42px;border-radius:50%;font-size:1.25rem;cursor:pointer;transition:.25s;}
+.close-btn:hover{background:rgba(255,255,255,.12);transform:scale(1.05);}
+.modal-copy{color:var(--muted);line-height:1.8;margin-bottom:20px;}
+.contact-info{display:grid;gap:14px;margin-top:16px;}
+.info-row{padding:16px 18px;border-radius:18px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);}
+.info-row strong{display:block;color:var(--c2);margin-bottom:6px;}
+.info-row span{color:var(--text);word-break:break-word;}
+.modal-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;}
+.modal-actions .btn{flex:1 1 180px;}
+
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;gap:28px;}
+  .hero-art{min-height:auto;}
+  .about{grid-template-columns:1fr;}
 }
-
-.project__label span{
-  display:inline-flex;
-  align-items:center;
-  padding:8px 12px;
-  border-radius:999px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.08);
-  backdrop-filter:blur(8px);
-  color:var(--c1);
-  font-size:.84rem;
-  white-space:nowrap;
-}
-
-@keyframes borderLight{
-  0%{ background-position:0% 50%; }
-  100%{ background-position:300% 50%; }
-}
-
-.about{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:28px;
-  align-items:stretch;
-}
-
-.about-box{
-  background:var(--card);
-  padding:36px;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.about-box p{
-  line-height:1.9;
-  color:var(--muted);
-}
-
-.about-brand{
-  margin-top:28px;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:16px 18px;
-  border-radius:20px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.about-brand img{
-  width:58px;
-  height:58px;
-  object-fit:contain;
-}
-
-.about-brand strong{
-  display:block;
-  font-size:1rem;
-  letter-spacing:.08em;
-}
-
-.about-brand span{
-  display:block;
-  color:var(--muted);
-  margin-top:4px;
-  font-size:.92rem;
-  line-height:1.4;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
-
-.stat{
-  background:linear-gradient(180deg,var(--card),var(--card-2));
-  padding:28px 22px;
-  border-radius:20px;
-  text-align:center;
-  border:1px solid rgba(255,255,255,.06);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  min-height:160px;
-}
-
-.stat h2{
-  font-size:2rem;
-  color:var(--c2);
-  margin-bottom:8px;
-}
-
-.stat p{
-  color:var(--muted);
-  line-height:1.6;
-}
-
-.tools-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-
-.tool{
-  background:linear-gradient(180deg,var(--card),var(--card-2));
-  padding:24px;
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,.06);
-  display:flex;
-  align-items:center;
-  gap:16px;
-  transition:.3s;
-}
-
-.tool:hover{
-  transform:translateY(-6px);
-  border-color:rgba(192,110,247,.42);
-}
-
-.tool-icon{
-  width:56px;
-  height:56px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  flex:0 0 auto;
-  background:linear-gradient(135deg, rgba(150,13,242,.18), rgba(234,207,252,.08));
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
-  overflow:hidden;
-}
-
-.tool-icon img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.tool strong{
-  display:block;
-  font-size:1.05rem;
-  margin-bottom:4px;
-}
-
-.tool span{
-  color:var(--muted);
-  font-size:.95rem;
-  line-height:1.45;
-}
-
-.contact{
-  text-align:center;
-}
-
-.contact h2{
-  font-size:clamp(2.4rem,5vw,4rem);
-  margin-bottom:18px;
-}
-
-.contact p{
-  max-width:680px;
-  margin:0 auto 34px;
-  color:var(--muted);
-  line-height:1.85;
-}
-
-.contact-actions{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:16px;
-}
-
-footer{
-  padding:34px 8%;
-  border-top:1px solid var(--line);
-  color:#8d8d8d;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.footer-brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.footer-brand img{
-  width:34px;
-  height:34px;
-  object-fit:contain;
-}
-
-.modal{
-  display:flex;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.74);
-  backdrop-filter:blur(8px);
-  align-items:center;
-  justify-content:center;
-  z-index:1000;
-  padding:20px;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .28s ease;
-}
-
-.modal.open{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.modal-card{
-  width:min(92vw, 560px);
-  background:linear-gradient(180deg, rgba(18,8,29,.98), rgba(18,8,29,.92));
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:28px;
-  padding:30px;
-  box-shadow:0 30px 90px rgba(0,0,0,.55);
-  position:relative;
-  transform:translateY(18px) scale(.985);
-  opacity:0;
-  transition:transform .34s ease, opacity .34s ease;
-}
-
-.modal.open .modal-card{
-  transform:translateY(0) scale(1);
-  opacity:1;
-}
-
-.modal-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:18px;
-}
-
-.modal-title{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.modal-title img{
-  width:46px;
-  height:46px;
-  object-fit:contain;
-}
-
-.modal-title strong{
-  display:block;
-  font-size:1.15rem;
-  letter-spacing:.06em;
-}
-
-.modal-title span{
-  display:block;
-  color:var(--muted);
-  font-size:.92rem;
-  margin-top:4px;
-}
-
-.close-btn{
-  appearance:none;
-  border:0;
-  background:rgba(255,255,255,.06);
-  color:white;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  font-size:1.25rem;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.close-btn:hover{
-  background:rgba(255,255,255,.12);
-  transform:scale(1.05);
-}
-
-.modal-copy{
-  color:var(--muted);
-  line-height:1.8;
-  margin-bottom:20px;
-}
-
-.contact-info{
-  display:grid;
-  gap:14px;
-  margin-top:16px;
-}
-
-.info-row{
-  padding:16px 18px;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.07);
-  background:rgba(255,255,255,.03);
-}
-
-.info-row strong{
-  display:block;
-  color:var(--c2);
-  margin-bottom:6px;
-}
-
-.info-row span{
-  color:var(--text);
-  word-break:break-word;
-}
-
-.modal-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:22px;
-}
-
-.modal-actions .btn{
-  flex:1 1 180px;
-}
-
-@media (max-width: 980px){
-  .hero{
-    grid-template-columns:1fr;
-    gap:28px;
-  }
-
-  .hero-art{
-    min-height:auto;
-  }
-
-  .about{
-    grid-template-columns:1fr;
-  }
-}
-
-@media (max-width: 900px){
-  nav{
-    padding:16px 6%;
-  }
-
-  .nav-links{
-    display:none;
-  }
-
-  section{
-    padding:92px 6%;
-  }
-
-  .hero{
-    padding:120px 6% 44px;
-  }
-
-  .contact h2{
-    font-size:2.5rem;
-  }
-
-  .stats{
-    grid-template-columns:1fr;
-  }
-
-  footer{
-    padding:28px 6%;
-  }
-
-  .decor-layer img{
-    width:82px;
-    height:82px;
-    opacity:.14;
-  }
+@media (max-width:900px){
+  nav{padding:16px 6%;}
+  .nav-links{display:none;}
+  section{padding:92px 6%;}
+  .hero{padding:120px 6% 44px;}
+  .contact h2{font-size:2.5rem;}
+  .stats{grid-template-columns:1fr;}
+  footer{padding:28px 6%;}
+  .floating-icon{width:88px;height:88px;}
 }
 </style>
 </head>
 <body>
 
 <div id="top"></div>
-
-<div class="decor-layer" aria-hidden="true">
-  <img class="decor-1" src="assets/icons/1.png" alt="">
-  <img class="decor-2" src="assets/icons/2.png" alt="">
-  <img class="decor-3" src="assets/icons/3.png" alt="">
-  <img class="decor-4" src="assets/icons/4.png" alt="">
-  <img class="decor-5" src="assets/icons/5.png" alt="">
-  <img class="decor-6" src="assets/icons/6.png" alt="">
-  <img class="decor-7" src="assets/icons/7.png" alt="">
-  <img class="decor-8" src="assets/icons/8.png" alt="">
-</div>
+<div id="floatingDecorLayer" class="floating-decor-layer" aria-hidden="true"></div>
 
 <nav>
   <a class="brand" href="#top" data-scroll="top">
     <img src="Logo.png" alt="Logo de ALEX AHA VISUALS">
     <span>ALEX AHA VISUALS</span>
   </a>
-
   <div class="nav-links">
     <a href="#servicios" data-scroll="servicios">Servicios</a>
     <a href="#portafolio" data-scroll="portafolio">Portafolio</a>
@@ -983,24 +385,13 @@ footer{
 
 <section class="hero">
   <div class="hero-content">
-    <div class="tag">
-      Diseñador gráfico • Branding • Identidad visual
-    </div>
-
-    <h1>
-      Diseño que genera
-      <span class="gradient">presencia.</span>
-    </h1>
-
-    <p>
-      Desarrollo identidades visuales, sistemas de marca, contenido para redes y piezas digitales con enfoque estratégico para que las marcas se vean más sólidas, más memorables y más claras.
-    </p>
-
+    <div class="tag">Diseñador gráfico • Branding • Identidad visual</div>
+    <h1>Diseño que genera <span class="gradient">presencia.</span></h1>
+    <p>Desarrollo identidades visuales, sistemas de marca, contenido para redes y piezas digitales con enfoque estratégico para que las marcas se vean más sólidas, más memorables y más claras.</p>
     <div class="buttons">
       <button class="btn primary" onclick="openModal()">Quiero contactarte</button>
     </div>
   </div>
-
   <div class="hero-art">
     <div class="hero-card">
       <div class="hero-logo">
@@ -1010,7 +401,6 @@ footer{
           <span>Diseño gráfico con identidad propia</span>
         </div>
       </div>
-
       <div class="preview">
         <div class="preview-row">Marca visual enfocada en estética, consistencia y mejor percepción.</div>
         <div class="preview-row">Diseño para comunicar con claridad sin perder carácter ni presencia.</div>
@@ -1022,184 +412,39 @@ footer{
 
 <section id="servicios">
   <h2 class="section-title">Servicios</h2>
-  <p class="section-sub">
-    Trabajo con diseño estratégico para construir piezas visuales que se sientan profesionales, coherentes y con intención.
-  </p>
-
+  <p class="section-sub">Trabajo con diseño estratégico para construir piezas visuales que se sientan profesionales, coherentes y con intención.</p>
   <div class="grid">
-    <div class="card">
-      <div class="card-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M4 18l6-12 6 12"></path><path d="M7 12h6"></path><path d="M15 7l5 11"></path></svg>
-      </div>
-      <h3>Logos</h3>
-      <p>Creo símbolos claros para que una marca se reconozca rápido.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M4 8h16"></path><path d="M4 12h12"></path><path d="M4 16h9"></path><path d="M18 11l2 1-2 1"></path></svg>
-      </div>
-      <h3>Diseño para redes sociales</h3>
-      <p>Diseño posts que comunican rápido y se ven ordenados.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M7 5h10v14H7z"></path><path d="M9 8h6"></path><path d="M9 12h6"></path><path d="M9 16h4"></path></svg>
-      </div>
-      <h3>Identidad visual</h3>
-      <p>Defino colores, tipografías y estilo para que todo combine.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M5 8h14"></path><path d="M5 16h14"></path><path d="M9 8l-4 4 4 4"></path><path d="M15 8l4 4-4 4"></path></svg>
-      </div>
-      <h3>Miniatura para Videos</h3>
-      <p>Hago miniaturas que llaman la atención y explican el contenido.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M4 16c2-5 4-7 8-7s6 2 8 7"></path><path d="M8 16c1-2 2-3 4-3s3 1 4 3"></path><path d="M12 5v4"></path></svg>
-      </div>
-      <h3>Motion Graphics</h3>
-      <p>Animaciones simples que hacen ver el contenido más dinámico.</p>
-    </div>
+    <div class="card"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18l6-12 6 12"></path><path d="M7 12h6"></path><path d="M15 7l5 11"></path></svg></div><h3>Logos</h3><p>Creo símbolos claros para que una marca se reconozca rápido.</p></div>
+    <div class="card"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h16"></path><path d="M4 12h12"></path><path d="M4 16h9"></path><path d="M18 11l2 1-2 1"></path></svg></div><h3>Diseño para redes sociales</h3><p>Diseño posts que comunican rápido y se ven ordenados.</p></div>
+    <div class="card"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 5h10v14H7z"></path><path d="M9 8h6"></path><path d="M9 12h6"></path><path d="M9 16h4"></path></svg></div><h3>Identidad visual</h3><p>Defino colores, tipografías y estilo para que todo combine.</p></div>
+    <div class="card"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h14"></path><path d="M5 16h14"></path><path d="M9 8l-4 4 4 4"></path><path d="M15 8l4 4-4 4"></path></svg></div><h3>Miniatura para Videos</h3><p>Hago miniaturas que llaman la atención y explican el contenido.</p></div>
+    <div class="card"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 16c2-5 4-7 8-7s6 2 8 7"></path><path d="M8 16c1-2 2-3 4-3s3 1 4 3"></path><path d="M12 5v4"></path></svg></div><h3>Motion Graphics</h3><p>Animaciones simples que hacen ver el contenido más dinámico.</p></div>
   </div>
 </section>
 
 <section id="portafolio">
   <h2 class="section-title">Portafolio seleccionado</h2>
-  <p class="section-sub">
-    Muestras visuales del estilo de trabajo. Puedes reemplazar cada bloque por proyectos reales cuando quieras.
-  </p>
-
+  <p class="section-sub">Muestras visuales del estilo de trabajo. Puedes reemplazar cada bloque por proyectos reales cuando quieras.</p>
   <div class="portfolio">
-    <div class="project">
-      <div class="project__glow"></div>
-      <div class="project__media">
-        <img src="assets/resources/Logos.png" alt="Proyecto de logos">
-      </div>
-      <div class="project__shade"></div>
-      <div class="project__label">
-        <strong>Logos</strong>
-        <span>Identidad clara</span>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project__glow"></div>
-      <div class="project__media">
-        <img src="assets/resources/Diseñopararedessociales.png" alt="Proyecto de diseño para redes sociales">
-      </div>
-      <div class="project__shade"></div>
-      <div class="project__label">
-        <strong>Diseño para redes sociales</strong>
-        <span>Contenido visual</span>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project__glow"></div>
-      <div class="project__media">
-        <img src="assets/resources/Identidadvisual.png" alt="Proyecto de identidad visual">
-      </div>
-      <div class="project__shade"></div>
-      <div class="project__label">
-        <strong>Identidad visual</strong>
-        <span>Sistema de marca</span>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project__glow"></div>
-      <div class="project__media">
-        <img src="assets/resources/MiniaturaparaVideos.png" alt="Proyecto de miniatura para videos">
-      </div>
-      <div class="project__shade"></div>
-      <div class="project__label">
-        <strong>Miniatura para Videos</strong>
-        <span>Impacto inmediato</span>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project__glow"></div>
-      <div class="project__media">
-        <video src="assets/resources/MotionGraphics.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="project__shade"></div>
-      <div class="project__label">
-        <strong>Motion Graphics</strong>
-        <span>Movimiento elegante</span>
-      </div>
-    </div>
+    <div class="project"><div class="project__glow"></div><div class="project__media"><img src="assets/resources/Logos.png" alt="Proyecto de logos"></div><div class="project__shade"></div><div class="project__label"><strong>Logos</strong><span>Identidad clara</span></div></div>
+    <div class="project"><div class="project__glow"></div><div class="project__media"><img src="assets/resources/Diseñopararedessociales.png" alt="Proyecto de diseño para redes sociales"></div><div class="project__shade"></div><div class="project__label"><strong>Diseño para redes sociales</strong><span>Contenido visual</span></div></div>
+    <div class="project"><div class="project__glow"></div><div class="project__media"><img src="assets/resources/Identidadvisual.png" alt="Proyecto de identidad visual"></div><div class="project__shade"></div><div class="project__label"><strong>Identidad visual</strong><span>Sistema de marca</span></div></div>
+    <div class="project"><div class="project__glow"></div><div class="project__media"><img src="assets/resources/MiniaturaparaVideos.png" alt="Proyecto de miniatura para videos"></div><div class="project__shade"></div><div class="project__label"><strong>Miniatura para Videos</strong><span>Impacto inmediato</span></div></div>
+    <div class="project"><div class="project__glow"></div><div class="project__media"><video src="assets/resources/MotionGraphics.mp4" autoplay muted loop playsinline></video></div><div class="project__shade"></div><div class="project__label"><strong>Motion Graphics</strong><span>Movimiento elegante</span></div></div>
   </div>
 </section>
 
 <section id="herramientas">
   <h2 class="section-title">Apps que uso para diseñar</h2>
-  <p class="section-sub">
-    Estas son las herramientas principales con las que desarrollo identidad visual, composición, mockups y piezas para redes.
-  </p>
-
+  <p class="section-sub">Estas son las herramientas principales con las que desarrollo identidad visual, composición, mockups y piezas para redes.</p>
   <div class="tools-grid">
-    <div class="tool">
-      <div class="tool-icon" aria-hidden="true"><img src="Adobe Illustrator.png" alt="Adobe Illustrator"></div>
-      <div>
-        <strong>Adobe Illustrator</strong>
-        <span>Vectores, logos, íconos y sistemas gráficos limpios.</span>
-      </div>
-    </div>
-
-    <div class="tool">
-      <div class="tool-icon" aria-hidden="true"><img src="Figma.png" alt="Figma"></div>
-      <div>
-        <strong>Figma</strong>
-        <span>Maquetación visual, prototipos y composición de pantallas.</span>
-      </div>
-    </div>
-
-    <div class="tool">
-      <div class="tool-icon" aria-hidden="true"><img src="Adobe Photoshop.png" alt="Adobe Photoshop"></div>
-      <div>
-        <strong>Adobe Photoshop</strong>
-        <span>Retoque, fotomontaje, texturas y ajustes de imagen.</span>
-      </div>
-    </div>
-
-    <div class="tool">
-      <div class="tool-icon" aria-hidden="true"><img src="Canva.png" alt="Canva"></div>
-      <div>
-        <strong>Canva</strong>
-        <span>Adaptaciones rápidas, piezas sociales y contenidos ágiles.</span>
-      </div>
-    </div>
-
-    <div class="tool">
-      <div class="tool-icon" aria-hidden="true"><img src="CapCut.png" alt="Capcut"></div>
-      <div>
-        <strong>Capcut</strong>
-        <span>Edición rápida para video y contenido dinámico.</span>
-      </div>
-    </div>
-
-    <div class="tool">
-      <div class="tool-icon" aria-hidden="true"><img src="Picsart.png" alt="Picsart"></div>
-      <div>
-        <strong>Picsart</strong>
-        <span>Edición ágil para imágenes, recortes y composiciones sencillas.</span>
-      </div>
-    </div>
-
-    <div class="tool">
-      <div class="tool-icon" aria-hidden="true"><img src="Lightroom.png" alt="Lightroom"></div>
-      <div>
-        <strong>Lightroom</strong>
-        <span>Ajusto color, luz y ambiente en fotografías.</span>
-      </div>
-    </div>
+    <div class="tool"><div class="tool-icon" aria-hidden="true"><img src="Adobe Illustrator.png" alt="Adobe Illustrator"></div><div><strong>Adobe Illustrator</strong><span>Vectores, logos, íconos y sistemas gráficos limpios.</span></div></div>
+    <div class="tool"><div class="tool-icon" aria-hidden="true"><img src="Figma.png" alt="Figma"></div><div><strong>Figma</strong><span>Maquetación visual, prototipos y composición de pantallas.</span></div></div>
+    <div class="tool"><div class="tool-icon" aria-hidden="true"><img src="Adobe Photoshop.png" alt="Adobe Photoshop"></div><div><strong>Adobe Photoshop</strong><span>Retoque, fotomontaje, texturas y ajustes de imagen.</span></div></div>
+    <div class="tool"><div class="tool-icon" aria-hidden="true"><img src="Canva.png" alt="Canva"></div><div><strong>Canva</strong><span>Adaptaciones rápidas, piezas sociales y contenidos ágiles.</span></div></div>
+    <div class="tool"><div class="tool-icon" aria-hidden="true"><img src="CapCut.png" alt="Capcut"></div><div><strong>Capcut</strong><span>Edición rápida para video y contenido dinámico.</span></div></div>
+    <div class="tool"><div class="tool-icon" aria-hidden="true"><img src="Picsart.png" alt="Picsart"></div><div><strong>Picsart</strong><span>Edición ágil para imágenes, recortes y composiciones sencillas.</span></div></div>
+    <div class="tool"><div class="tool-icon" aria-hidden="true"><img src="Lightroom.png" alt="Lightroom"></div><div><strong>Lightroom</strong><span>Ajusto color, luz y ambiente en fotografías.</span></div></div>
   </div>
 </section>
 
@@ -1207,49 +452,24 @@ footer{
   <div class="about">
     <div class="about-box">
       <h2 class="section-title">Sobre mí</h2>
-      <p>
-        Empecemos por el principio. Mi nombre es Alexander Hurtado Abreu y, desde la infancia, la creatividad ha sido mi manera de entender el mundo. Hoy, a mis 24 años, he convertido esa pasión en mi profesión, actuando como el puente entre las ideas de mis clientes y su materialización en la realidad. Soy un creativo venezolano, amante de los gatos y un curioso incansable, convencido de que ningún concepto es demasiado abstracto cuando se aborda desde la perspectiva adecuada. Me apasiona diseñar realidades, explorar nuevas tendencias y, por supuesto, disfrutar de un buen café durante el proceso.
-      </p>
-
+      <p>Empecemos por el principio. Mi nombre es Alexander Hurtado Abreu y, desde la infancia, la creatividad ha sido mi manera de entender el mundo. Hoy, a mis 24 años, he convertido esa pasión en mi profesión, actuando como el puente entre las ideas de mis clientes y su materialización en la realidad. Soy un creativo venezolano, amante de los gatos y un curioso incansable, convencido de que ningún concepto es demasiado abstracto cuando se aborda desde la perspectiva adecuada. Me apasiona diseñar realidades, explorar nuevas tendencias y, por supuesto, disfrutar de un buen café durante el proceso.</p>
       <div class="about-brand">
         <img src="Logo.png" alt="Logo de ALEX AHA VISUALS">
-        <div>
-          <strong>ALEX AHA VISUALS</strong>
-          <span>Diseño visual, branding y contenido digital con una identidad definida.</span>
-        </div>
+        <div><strong>ALEX AHA VISUALS</strong><span>Diseño visual, branding y contenido digital con una identidad definida.</span></div>
       </div>
     </div>
-
     <div class="stats">
-      <div class="stat">
-        <h2>Visión</h2>
-        <p>Diseño con intención</p>
-      </div>
-
-      <div class="stat">
-        <h2>9+</h2>
-        <p>Años diseñando</p>
-      </div>
-
-      <div class="stat">
-        <h2>Ideas</h2>
-        <p>Conceptos que evolucionan</p>
-      </div>
-
-      <div class="stat">
-        <h2>24/7</h2>
-        <p>Creatividad constante</p>
-      </div>
+      <div class="stat"><h2>Visión</h2><p>Diseño con intención</p></div>
+      <div class="stat"><h2>9+</h2><p>Años diseñando</p></div>
+      <div class="stat"><h2>Ideas</h2><p>Conceptos que evolucionan</p></div>
+      <div class="stat"><h2>24/7</h2><p>Creatividad constante</p></div>
     </div>
   </div>
 </section>
 
 <section id="contacto" class="contact">
   <h2>Construyamos algo sólido</h2>
-  <p>
-    Disponible para traer tus ideas mas unicas a la realidad.
-  </p>
-
+  <p>Disponible para traer tus ideas mas unicas a la realidad.</p>
   <div class="contact-actions">
     <button class="btn primary" onclick="openModal()">Contactar</button>
     <button class="btn secondary" onclick="goInicio()">Inicio</button>
@@ -1269,30 +489,15 @@ footer{
     <div class="modal-top">
       <div class="modal-title">
         <img src="Logo.png" alt="Logo de ALEX AHA VISUALS">
-        <div>
-          <strong id="modalTitle">Contacto directo</strong>
-          <span>Información para comunicarte conmigo</span>
-        </div>
+        <div><strong id="modalTitle">Contacto directo</strong><span>Información para comunicarte conmigo</span></div>
       </div>
       <button class="close-btn" type="button" aria-label="Cerrar ventana emergente" onclick="closeModal()">×</button>
     </div>
-
-    <p class="modal-copy">
-      Estos son los datos que puedes usar para escribirme o llamarme directamente.
-    </p>
-
+    <p class="modal-copy">Estos son los datos que puedes usar para escribirme o llamarme directamente.</p>
     <div class="contact-info">
-      <div class="info-row">
-        <strong>Número telefónico</strong>
-        <span>+58 424-172-26-04</span>
-      </div>
-
-      <div class="info-row">
-        <strong>Correo electrónico</strong>
-        <span>Alexanderhaart00@gmail.com</span>
-      </div>
+      <div class="info-row"><strong>Número telefónico</strong><span>+58 424-172-26-04</span></div>
+      <div class="info-row"><strong>Correo electrónico</strong><span>Alexanderhaart00@gmail.com</span></div>
     </div>
-
     <div class="modal-actions">
       <a class="btn primary" href="tel:+584241722604">Llamar ahora</a>
       <a class="btn secondary" href="mailto:Alexanderhaart00@gmail.com">Enviar correo</a>
@@ -1301,16 +506,24 @@ footer{
 </div>
 
 <script>
+const floatingLayer = document.getElementById('floatingDecorLayer');
+const ornamentFiles = ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png'];
+
 function openModal(){
   const modal = document.getElementById('contactModal');
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
 }
-
 function closeModal(){
   const modal = document.getElementById('contactModal');
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden', 'true');
+}
+
+function easeOutBack(t){
+  const c1 = 1.70158;
+  const c3 = c1 + 1;
+  return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
 }
 
 function scrollToTarget(target){
@@ -1321,29 +534,14 @@ function scrollToTarget(target){
   const distance = end - start;
   const duration = 1400;
   const startTime = performance.now();
-
-  function easeOutBack(t){
-    const c1 = 1.70158;
-    const c3 = c1 + 1;
-    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
-  }
-
   function step(now){
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = easeOutBack(progress);
-    window.scrollTo(0, start + distance * eased);
-    if(progress < 1){
-      requestAnimationFrame(step);
-    }
+    const progress = Math.min((now - startTime) / duration, 1);
+    window.scrollTo(0, start + distance * easeOutBack(progress));
+    if(progress < 1) requestAnimationFrame(step);
   }
-
   requestAnimationFrame(step);
 }
-
-function goInicio(){
-  scrollToTarget(document.getElementById('top'));
-}
+function goInicio(){scrollToTarget(document.getElementById('top'));}
 
 document.querySelectorAll('[data-scroll]').forEach(link => {
   link.addEventListener('click', (e) => {
@@ -1356,15 +554,10 @@ document.querySelectorAll('[data-scroll]').forEach(link => {
 });
 
 document.getElementById('contactModal').addEventListener('click', function(e){
-  if(e.target === this){
-    closeModal();
-  }
+  if(e.target === this) closeModal();
 });
-
 document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape'){
-    closeModal();
-  }
+  if(e.key === 'Escape') closeModal();
 });
 
 const observer = new IntersectionObserver(entries => {
@@ -1373,16 +566,96 @@ const observer = new IntersectionObserver(entries => {
       entry.target.animate([
         {opacity:0, transform:'translateY(40px)'},
         {opacity:1, transform:'translateY(0)'}
-      ],{
-        duration:800,
-        fill:'forwards'
-      });
+      ], {duration:800, fill:'forwards'});
     }
   });
 },{threshold:0.15});
+document.querySelectorAll('.card,.project,.stat,.about-box,.tool,.hero-card').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.card,.project,.stat,.about-box,.tool,.hero-card')
-  .forEach(el => observer.observe(el));
+function createFloatingIcon(file, index){
+  const el = document.createElement('div');
+  el.className = 'floating-icon';
+  el.dataset.index = String(index);
+  el.style.left = `${8 + ((index * 11) % 76)}vw`;
+  el.style.top = `${10 + ((index * 13) % 68)}vh`;
+  el.style.width = `${132}px`;
+  el.style.height = `${132}px`;
+  el.innerHTML = `<div class="floating-icon__inner"><img src="assets/icons/${file}" alt="" draggable="false"></div>`;
+
+  let x = 0;
+  let y = 0;
+  let originX = 0;
+  let originY = 0;
+  let dragging = false;
+  let removalTimer = null;
+  let floatTimer = null;
+  const inner = el.querySelector('.floating-icon__inner');
+  inner.style.animationDuration = `${7.5 + index * 0.35}s`;
+  inner.style.animationDelay = `${-index * .4}s`;
+
+  const placeAt = (nx, ny) => {
+    const maxX = window.innerWidth - el.offsetWidth - 10;
+    const maxY = window.innerHeight - el.offsetHeight - 10;
+    x = Math.max(10, Math.min(nx, maxX));
+    y = Math.max(10, Math.min(ny, maxY));
+    el.style.left = `${x}px`;
+    el.style.top = `${y}px`;
+  };
+
+  const startFloating = () => {
+    el.style.opacity = '1';
+    el.style.transform = 'translateZ(0)';
+    clearTimeout(floatTimer);
+    clearTimeout(removalTimer);
+    floatTimer = setTimeout(() => {
+      if(!dragging){
+        el.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(-24px) scale(.92)';
+        removalTimer = setTimeout(() => el.remove(), 1250);
+      }
+    }, 18000 + index * 1500);
+  };
+
+  el.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    clearTimeout(floatTimer);
+    clearTimeout(removalTimer);
+    el.classList.add('is-dragging');
+    el.setPointerCapture(e.pointerId);
+    originX = e.clientX - x;
+    originY = e.clientY - y;
+    el.style.transition = 'none';
+    el.style.zIndex = '80';
+  });
+
+  el.addEventListener('pointermove', (e) => {
+    if(!dragging) return;
+    placeAt(e.clientX - originX, e.clientY - originY);
+  });
+
+  function finishDrag(){
+    if(!dragging) return;
+    dragging = false;
+    el.classList.remove('is-dragging');
+    el.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+    el.style.zIndex = '20';
+    el.style.transform = 'translateZ(0)';
+    startFloating();
+  }
+
+  el.addEventListener('pointerup', finishDrag);
+  el.addEventListener('pointercancel', finishDrag);
+  el.addEventListener('lostpointercapture', finishDrag);
+
+  floatingLayer.appendChild(el);
+  requestAnimationFrame(() => {
+    placeAt((window.innerWidth * 0.08) + ((index * 137) % (window.innerWidth * 0.72)), (window.innerHeight * 0.16) + ((index * 89) % (window.innerHeight * 0.56)));
+    startFloating();
+  });
+}
+
+ornamentFiles.forEach(createFloatingIcon);
 </script>
 
 </body>
