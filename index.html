@@ -20,10 +20,10 @@ img,video{max-width:100%;display:block;}
 a,button{-webkit-tap-highlight-color:transparent;}
 section,footer{position:relative;z-index:3;}
 
-.floating-decor-layer{position:fixed;inset:0;pointer-events:none;z-index:6;}
-.floating-icon{position:fixed;width:132px;height:132px;pointer-events:auto;touch-action:none;user-select:none;cursor:grab;opacity:1;transition:opacity .9s ease, transform .9s ease, filter .25s ease;filter:drop-shadow(0 14px 32px rgba(150,13,242,.38));will-change:transform,opacity,left,top;}
+.floating-decor-layer{position:fixed;inset:0;pointer-events:none;z-index:1;}
+.floating-icon{position:fixed;width:132px;height:132px;pointer-events:auto;touch-action:none;user-select:none;cursor:grab;opacity:1;transition:opacity .9s ease, transform .9s ease, filter .25s ease;filter:drop-shadow(0 14px 32px rgba(150,13,242,.38));will-change:transform,opacity,left,top;z-index:1;}
 .floating-icon:active{cursor:grabbing;}
-.floating-icon.is-dragging{z-index:80;filter:drop-shadow(0 16px 42px rgba(234,207,252,.22));}
+.floating-icon.is-dragging{z-index:2;filter:drop-shadow(0 16px 42px rgba(234,207,252,.22));}
 .floating-icon__inner{width:100%;height:100%;animation:iconFloat 8s ease-in-out infinite;transform-origin:center center;}
 .floating-icon__inner img{width:100%;height:100%;object-fit:contain;opacity:1;mix-blend-mode:normal;}
 .floating-icon.is-dragging .floating-icon__inner{animation:none;}
@@ -137,7 +137,7 @@ footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:fl
 .modal-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;}
 .modal-actions .btn{flex:1 1 180px;}
 
-.nav-backdrop{display:none;position:fixed;inset:0;background:rgba(5,2,8,.32);backdrop-filter:blur(10px) saturate(.9);z-index:110;opacity:0;transition:opacity .34s ease;}
+.nav-backdrop{display:none;position:fixed;inset:0;background:rgba(5,2,8,.32);z-index:110;opacity:0;transition:opacity .34s ease;}
 .nav-backdrop.show{display:block;opacity:1;}
 
 @media (max-width:980px){
@@ -271,18 +271,27 @@ footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:fl
 <section id="contacto" class="contact">
   <h2>Construyamos algo sólido</h2>
   <p>Disponible para traer tus ideas mas unicas a la realidad.</p>
-  <div class="contact-actions"><button class="btn primary" onclick="openModal()">Contactar</button><button class="btn secondary" onclick="goInicio()">Inicio</button></div>
+  <div class="contact-actions">
+    <button class="btn primary" onclick="openModal()">Contactar</button>
+    <button class="btn secondary" onclick="goInicio()">Inicio</button>
+  </div>
 </section>
 
 <footer>
-  <div class="footer-brand"><img src="Logo.png" alt="Logo de ALEX AHA VISUALS"><span>ALEX AHA VISUALS</span></div>
+  <div class="footer-brand">
+    <img src="Logo.png" alt="Logo de ALEX AHA VISUALS">
+    <span>ALEX AHA VISUALS</span>
+  </div>
   <div>© 2026 Alex AHA Visuals</div>
 </footer>
 
 <div id="contactModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal-card">
     <div class="modal-top">
-      <div class="modal-title"><img src="Logo.png" alt="Logo de ALEX AHA VISUALS"><div><strong id="modalTitle">Contacto directo</strong><span>Información para comunicarte conmigo</span></div></div>
+      <div class="modal-title">
+        <img src="Logo.png" alt="Logo de ALEX AHA VISUALS">
+        <div><strong id="modalTitle">Contacto directo</strong><span>Información para comunicarte conmigo</span></div>
+      </div>
       <button class="close-btn" type="button" aria-label="Cerrar ventana emergente" onclick="closeModal()">×</button>
     </div>
     <p class="modal-copy">Estos son los datos que puedes usar para escribirme o llamarme directamente.</p>
@@ -290,7 +299,10 @@ footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:fl
       <div class="info-row"><strong>Número telefónico</strong><span>+58 424-172-26-04</span></div>
       <div class="info-row"><strong>Correo electrónico</strong><span>Alexanderhaart00@gmail.com</span></div>
     </div>
-    <div class="modal-actions"><a class="btn primary" href="tel:+584241722604">Llamar ahora</a><a class="btn secondary" href="mailto:Alexanderhaart00@gmail.com">Enviar correo</a></div>
+    <div class="modal-actions">
+      <a class="btn primary" href="tel:+584241722604">Llamar ahora</a>
+      <a class="btn secondary" href="mailto:Alexanderhaart00@gmail.com">Enviar correo</a>
+    </div>
   </div>
 </div>
 
@@ -304,17 +316,9 @@ const navBackdrop = document.getElementById('navBackdrop');
 let activeDecorCount = 0;
 let decorSpawnTimer = null;
 
-function openModal(){
-  const modal = document.getElementById('contactModal');
-  modal.classList.add('open');
-  modal.setAttribute('aria-hidden','false');
-}
-function closeModal(){
-  const modal = document.getElementById('contactModal');
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden','true');
-}
-function easeOutBack(t){const c1=1.70158; const c3=c1+1; return 1 + c3*Math.pow(t-1,3) + c1*Math.pow(t-1,2);}
+function openModal(){ const modal = document.getElementById('contactModal'); modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }
+function closeModal(){ const modal = document.getElementById('contactModal'); modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+function easeOutBack(t){ const c1=1.70158; const c3=c1+1; return 1 + c3*Math.pow(t-1,3) + c1*Math.pow(t-1,2); }
 function scrollToTarget(target){
   if(!target) return;
   const headerOffset = 92;
@@ -324,19 +328,18 @@ function scrollToTarget(target){
   const duration = 1400;
   const startTime = performance.now();
   function step(now){
-    const progress = Math.min((now - startTime)/duration,1);
+    const progress = Math.min((now - startTime)/duration, 1);
     window.scrollTo(0, start + distance * easeOutBack(progress));
     if(progress < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
 function goInicio(){ scrollToTarget(document.getElementById('top')); }
-
 function setMenuOpen(isOpen){
   nav.classList.toggle('open', isOpen);
   navToggle.setAttribute('aria-expanded', String(isOpen));
-  navBackdrop.classList.toggle('show', isOpen);
   navToggle.textContent = isOpen ? '×' : '☰';
+  navBackdrop.classList.toggle('show', isOpen);
 }
 navToggle?.addEventListener('click', () => setMenuOpen(!nav.classList.contains('open')));
 navBackdrop?.addEventListener('click', () => setMenuOpen(false));
@@ -350,26 +353,18 @@ document.querySelectorAll('[data-scroll]').forEach(link => {
     setMenuOpen(false);
   });
 });
-document.getElementById('contactModal').addEventListener('click', function(e){ if(e.target === this) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeModal(); setMenuOpen(false); } });
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.animate([{opacity:0, transform:'translateY(40px)'},{opacity:1, transform:'translateY(0)'}], {duration:800, fill:'forwards'});
-    }
-  });
-},{threshold:.15});
+document.getElementById('contactModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeModal(); setMenuOpen(false); } });
+const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if(entry.isIntersecting){ entry.target.animate([{opacity:0, transform:'translateY(40px)'}, {opacity:1, transform:'translateY(0)'}], {duration:800, fill:'forwards'}); } }); }, {threshold:.15});
 document.querySelectorAll('.card,.project,.stat,.about-box,.tool,.hero-card').forEach(el => observer.observe(el));
-
 function rand(min,max){ return Math.random()*(max-min)+min; }
-function getMaxVisibleDecor(){ return window.innerWidth <= 900 ? 2 : 3; }
+function getMaxVisibleDecor(){ return window.innerWidth<=900 ? 2 : 3; }
 function scheduleDecorSpawn(){
   clearTimeout(decorSpawnTimer);
   decorSpawnTimer = setTimeout(() => {
     if(activeDecorCount < getMaxVisibleDecor()) spawnFloatingIcon();
     scheduleDecorSpawn();
-  }, rand(700,3200));
+  }, rand(700, 3200));
 }
 function spawnFloatingIcon(){
   if(activeDecorCount >= getMaxVisibleDecor()) return;
@@ -382,7 +377,7 @@ function spawnFloatingIcon(){
   const inner = el.querySelector('.floating-icon__inner');
   inner.style.animationDuration = `${7.5 + Math.random()*3.5}s`;
   inner.style.animationDelay = `${-(Math.random()*3)}s`;
-  let x=0, y=0, originX=0, originY=0, dragging=false, removed=false, lifetimeTimer=null, removalTimer=null, endAfterDrag=false;
+  let x=0,y=0,originX=0,originY=0,dragging=false,removed=false,lifetimeTimer=null,removalTimer=null,endAfterDrag=false;
   const placeAt = (nx, ny) => {
     const maxX = Math.max(10, window.innerWidth - el.offsetWidth - 10);
     const maxY = Math.max(10, window.innerHeight - el.offsetHeight - 10);
@@ -393,10 +388,10 @@ function spawnFloatingIcon(){
   };
   const cleanup = () => { if(removed) return; removed = true; clearTimeout(lifetimeTimer); clearTimeout(removalTimer); activeDecorCount = Math.max(0, activeDecorCount - 1); el.remove(); };
   const fadeAndRemove = () => { if(removed) return; el.style.transition = 'opacity 1.15s ease, transform 1.15s ease'; el.style.opacity = '0'; el.style.transform = 'translateY(-22px) scale(.92)'; removalTimer = setTimeout(cleanup, 1200); };
-  const scheduleLife = () => { clearTimeout(lifetimeTimer); const lifeMs = rand(9000,22000); lifetimeTimer = setTimeout(() => { if(dragging){ endAfterDrag = true; return; } fadeAndRemove(); }, lifeMs); };
-  el.addEventListener('pointerdown', e => { dragging = true; endAfterDrag = false; clearTimeout(lifetimeTimer); clearTimeout(removalTimer); el.classList.add('is-dragging'); el.setPointerCapture(e.pointerId); originX = e.clientX - x; originY = e.clientY - y; el.style.transition = 'none'; el.style.zIndex = '80'; });
+  const scheduleLife = () => { clearTimeout(lifetimeTimer); const lifeMs = rand(9000, 22000); lifetimeTimer = setTimeout(() => { if(dragging){ endAfterDrag = true; return; } fadeAndRemove(); }, lifeMs); };
+  el.addEventListener('pointerdown', e => { dragging = true; endAfterDrag = false; clearTimeout(lifetimeTimer); clearTimeout(removalTimer); el.classList.add('is-dragging'); el.setPointerCapture(e.pointerId); originX = e.clientX - x; originY = e.clientY - y; el.style.transition='none'; el.style.zIndex='2'; });
   el.addEventListener('pointermove', e => { if(dragging) placeAt(e.clientX - originX, e.clientY - originY); });
-  function finishDrag(){ if(!dragging) return; dragging = false; el.classList.remove('is-dragging'); el.style.transition = 'opacity 1.15s ease, transform 1.15s ease'; el.style.zIndex = '20'; el.style.transform = 'translateZ(0)'; if(endAfterDrag){ fadeAndRemove(); return; } scheduleLife(); }
+  function finishDrag(){ if(!dragging) return; dragging = false; el.classList.remove('is-dragging'); el.style.transition = 'opacity 1.15s ease, transform 1.15s ease'; el.style.zIndex = '1'; el.style.transform = 'translateZ(0)'; if(endAfterDrag){ fadeAndRemove(); return; } scheduleLife(); }
   el.addEventListener('pointerup', finishDrag);
   el.addEventListener('pointercancel', finishDrag);
   el.addEventListener('lostpointercapture', finishDrag);
