@@ -343,13 +343,14 @@ function setMenuOpen(isOpen){
 }
 function closeMenuThenScroll(target){
   if(!target) return;
-  const wasOpen = nav.classList.contains('open');
-  if(!wasOpen){
+  if(!window.matchMedia('(max-width: 900px)').matches){
     scrollToTarget(target);
     return;
   }
   setMenuOpen(false);
-  window.setTimeout(() => scrollToTarget(target), 340);
+  window.setTimeout(() => {
+    requestAnimationFrame(() => scrollToTarget(target));
+  }, 120);
 }
 navToggle?.addEventListener('click', () => setMenuOpen(!nav.classList.contains('open')));
 navBackdrop?.addEventListener('click', () => setMenuOpen(false));
