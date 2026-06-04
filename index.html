@@ -341,6 +341,16 @@ function setMenuOpen(isOpen){
   navToggle.textContent = isOpen ? '×' : '☰';
   navBackdrop.classList.toggle('show', isOpen);
 }
+function closeMenuThenScroll(target){
+  if(!target) return;
+  const wasOpen = nav.classList.contains('open');
+  if(!wasOpen){
+    scrollToTarget(target);
+    return;
+  }
+  setMenuOpen(false);
+  window.setTimeout(() => scrollToTarget(target), 340);
+}
 navToggle?.addEventListener('click', () => setMenuOpen(!nav.classList.contains('open')));
 navBackdrop?.addEventListener('click', () => setMenuOpen(false));
 window.addEventListener('resize', () => { if(window.innerWidth > 900) setMenuOpen(false); });
@@ -349,8 +359,7 @@ document.querySelectorAll('[data-scroll]').forEach(link => {
     const target = document.querySelector(link.getAttribute('href'));
     if(!target) return;
     e.preventDefault();
-    scrollToTarget(target);
-    setMenuOpen(false);
+    closeMenuThenScroll(target);
   });
 });
 document.getElementById('contactModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
