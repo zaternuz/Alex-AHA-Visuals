@@ -16,10 +16,7 @@
 html{scroll-behavior:smooth;scroll-padding-top:110px;}
 body{position:relative;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%, rgba(150,13,242,.25), transparent 30%),radial-gradient(circle at 80% 40%, rgba(192,110,247,.15), transparent 30%),radial-gradient(circle at 50% 90%, rgba(60,5,97,.5), transparent 40%);pointer-events:none;z-index:-1;}
-img,video{max-width:100%;display:block;}
-a,button{-webkit-tap-highlight-color:transparent;}
-section,footer{position:relative;z-index:3;}
-
+img,video{max-width:100%;display:block;} a,button{-webkit-tap-highlight-color:transparent;} section,footer{position:relative;z-index:3;}
 .floating-decor-layer{position:fixed;inset:0;pointer-events:none;z-index:1;}
 .floating-icon{position:fixed;width:132px;height:132px;pointer-events:auto;touch-action:none;user-select:none;cursor:grab;opacity:1;transition:opacity .9s ease, transform .9s ease, filter .25s ease;filter:drop-shadow(0 14px 32px rgba(150,13,242,.38));will-change:transform,opacity,left,top;z-index:1;}
 .floating-icon:active{cursor:grabbing;}
@@ -28,7 +25,6 @@ section,footer{position:relative;z-index:3;}
 .floating-icon__inner img{width:100%;height:100%;object-fit:contain;opacity:1;mix-blend-mode:normal;}
 .floating-icon.is-dragging .floating-icon__inner{animation:none;}
 @keyframes iconFloat{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-12px) rotate(2deg);}}
-
 nav{position:fixed;top:0;width:100%;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;gap:20px;backdrop-filter:blur(16px);background:rgba(8,4,13,.55);border-bottom:1px solid var(--line);z-index:100;}
 .brand{display:flex;align-items:center;gap:12px;min-width:0;cursor:pointer;text-decoration:none;color:inherit;transition:.28s ease;}
 .brand:hover{filter:drop-shadow(0 0 18px rgba(234,207,252,.38));text-shadow:0 0 16px rgba(234,207,252,.2);}
@@ -39,7 +35,6 @@ nav{position:fixed;top:0;width:100%;padding:18px 8%;display:flex;justify-content
 .nav-links{display:flex;gap:28px;flex-wrap:wrap;justify-content:flex-end;}
 .nav-links a{text-decoration:none;color:white;font-size:.95rem;opacity:.88;transition:.25s;}
 .nav-links a:hover{opacity:1;color:var(--c2);}
-
 .hero{min-height:100vh;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:60px;padding:120px 8% 60px;}
 .hero-content{max-width:850px;}
 .tag{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;margin-bottom:25px;color:var(--c2);background:rgba(255,255,255,.02);}
@@ -52,7 +47,6 @@ nav{position:fixed;top:0;width:100%;padding:18px 8%;display:flex;justify-content
 .primary{background:linear-gradient(135deg,var(--c4),var(--c5));color:white;box-shadow:0 18px 40px rgba(150,13,242,.22);}
 .secondary{border:1px solid var(--line);color:white;background:rgba(255,255,255,.02);}
 .btn:hover{transform:translateY(-4px);}
-
 .hero-art{position:relative;display:flex;align-items:center;justify-content:center;min-height:520px;}
 .hero-card{width:min(100%,420px);background:linear-gradient(180deg, rgba(18,8,29,.88), rgba(18,8,29,.56));border:1px solid rgba(255,255,255,.08);border-radius:32px;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.35);backdrop-filter:blur(10px);position:relative;overflow:hidden;transition:box-shadow .3s ease,border-color .3s ease,transform .3s ease,filter .3s ease;}
 .hero-card::before{content:"";position:absolute;inset:-35% -25% auto auto;width:240px;height:240px;background:radial-gradient(circle, rgba(171,61,245,.38), transparent 70%);pointer-events:none;opacity:.6;transition:opacity .3s ease;}
@@ -65,7 +59,6 @@ nav{position:fixed;top:0;width:100%;padding:18px 8%;display:flex;justify-content
 .hero-logo span{display:block;color:var(--muted);margin-top:4px;font-size:.95rem;}
 .preview{display:grid;gap:14px;margin-top:10px;}
 .preview-row{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);color:var(--muted);line-height:1.55;}
-
 section{padding:108px 8%;}
 .section-title{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:18px;letter-spacing:-.03em;}
 .section-sub{color:var(--muted);margin-bottom:54px;max-width:760px;line-height:1.8;}
@@ -77,7 +70,6 @@ section{padding:108px 8%;}
 .card-icon svg{width:30px;height:30px;fill:none;stroke:var(--c1);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 .card h3{margin-bottom:12px;font-size:1.22rem;}
 .card p{color:var(--muted);line-height:1.75;}
-
 .portfolio{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
 .project{min-height:280px;border-radius:24px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--c8),var(--c5));border:1px solid rgba(255,255,255,.06);isolation:isolate;transform:translateY(0);transition:transform .3s ease,box-shadow .3s ease;}
 .project__glow{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 20% 25%, rgba(234,207,252,.10), transparent 30%),radial-gradient(circle at 78% 70%, rgba(171,61,245,.08), transparent 28%);filter:blur(14px);opacity:.18;pointer-events:none;z-index:0;}
@@ -91,7 +83,6 @@ section{padding:108px 8%;}
 .project__label{position:absolute;left:16px;right:16px;bottom:16px;z-index:3;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:14px 15px 13px;border-radius:18px;background:linear-gradient(180deg, rgba(86,22,128,.18) 0%, rgba(8,4,13,.80) 78%);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.08);}
 .project__label strong{font-size:1.18rem;line-height:1.2;text-align:center;text-shadow:0 2px 10px rgba(0,0,0,.20);}
 @keyframes borderLight{0%{background-position:0% 50%;}100%{background-position:300% 50%;}}
-
 .about{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:stretch;}
 .about-box{background:var(--card);padding:36px;border-radius:24px;border:1px solid rgba(255,255,255,.06);}
 .about-box p{line-height:1.9;color:var(--muted);}
@@ -117,7 +108,6 @@ section{padding:108px 8%;}
 footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
 .footer-brand{display:flex;align-items:center;gap:12px;}
 .footer-brand img{width:34px;height:34px;object-fit:contain;}
-
 .modal{display:flex;position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(10px) saturate(.95);align-items:center;justify-content:center;z-index:1000;padding:20px;opacity:0;pointer-events:none;transition:opacity .28s ease;}
 .modal.open{opacity:1;pointer-events:auto;}
 .modal-card{width:min(92vw,560px);background:linear-gradient(180deg, rgba(18,8,29,.98), rgba(18,8,29,.92));border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:30px;box-shadow:0 30px 90px rgba(0,0,0,.55);position:relative;transform:translateY(18px) scale(.985);opacity:0;transition:transform .34s ease,opacity .34s ease;}
@@ -136,16 +126,9 @@ footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:fl
 .info-row span{color:var(--text);word-break:break-word;}
 .modal-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;}
 .modal-actions .btn{flex:1 1 180px;}
-
 .nav-backdrop{display:none;position:fixed;inset:0;background:rgba(5,2,8,.32);z-index:110;opacity:0;transition:opacity .34s ease;}
 .nav-backdrop.show{display:block;opacity:1;}
-
-@media (max-width:980px){
-  .hero{grid-template-columns:1fr;gap:28px;}
-  .hero-art{min-height:auto;}
-  .about{grid-template-columns:1fr;}
-}
-
+@media (max-width:980px){.hero{grid-template-columns:1fr;gap:28px;}.hero-art{min-height:auto;}.about{grid-template-columns:1fr;}}
 @media (max-width:900px){
   html{font-size:112.5%;}
   nav{padding:14px 6%;flex-wrap:nowrap;align-items:center;gap:12px;}
@@ -194,7 +177,6 @@ footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:fl
   </div>
 </nav>
 <div id="navBackdrop" class="nav-backdrop" aria-hidden="true"></div>
-
 <section class="hero">
   <div class="hero-content">
     <div class="tag">Diseñador gráfico • Branding • Identidad visual</div>
@@ -213,7 +195,6 @@ footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:fl
     </div>
   </div>
 </section>
-
 <section id="servicios">
   <h2 class="section-title">Servicios</h2>
   <p class="section-sub">Trabajo con diseño estratégico para construir piezas visuales que se sientan profesionales, coherentes y con intención.</p>
@@ -225,7 +206,6 @@ footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:fl
     <div class="card"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 16c2-5 4-7 8-7s6 2 8 7"></path><path d="M8 16c1-2 2-3 4-3s3 1 4 3"></path><path d="M12 5v4"></path></svg></div><h3>Motion Graphics</h3><p>Animaciones simples que hacen ver el contenido más dinámico.</p></div>
   </div>
 </section>
-
 <section id="portafolio">
   <h2 class="section-title">Portafolio seleccionado</h2>
   <p class="section-sub">Estos son algunos de mis proyectos creados para mostrar mi estilo, enfoque y variedad visual.</p>
@@ -237,7 +217,6 @@ footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:fl
     <div class="project"><div class="project__glow"></div><div class="project__media"><video src="assets/resources/MotionGraphics.mp4" autoplay muted loop playsinline></video></div><div class="project__shade"></div><div class="project__label"><strong>Motion Graphics</strong></div></div>
   </div>
 </section>
-
 <section id="herramientas">
   <h2 class="section-title">Apps que uso para diseñar</h2>
   <p class="section-sub">Estas son las herramientas principales con las que desarrollo identidad visual, composición, mockups y piezas para redes.</p>
@@ -251,61 +230,10 @@ footer{padding:34px 8%;border-top:1px solid var(--line);color:#8d8d8d;display:fl
     <div class="tool"><div class="tool-icon" aria-hidden="true"><img src="Lightroom.png" alt="Lightroom"></div><div><strong>Lightroom</strong><span>Ajusto color, luz y ambiente en fotografías.</span></div></div>
   </div>
 </section>
-
-<section id="sobre-mi">
-  <div class="about">
-    <div class="about-box">
-      <h2 class="section-title">Sobre mí</h2>
-      <p>Empecemos por el principio. Mi nombre es Alexander Hurtado Abreu y, desde la infancia, la creatividad ha sido mi manera de entender el mundo. Hoy, a mis 24 años, he convertido esa pasión en mi profesión, actuando como el puente entre las ideas de mis clientes y su materialización en la realidad. Soy un creativo venezolano, amante de los gatos y un curioso incansable, convencido de que ningún concepto es demasiado abstracto cuando se aborda desde la perspectiva adecuada. Me apasiona diseñar realidades, explorar nuevas tendencias y, por supuesto, disfrutar de un buen café durante el proceso.</p>
-      <div class="about-brand"><img src="Logo.png" alt="Logo de ALEX AHA VISUALS"><div><strong>ALEX AHA VISUALS</strong><span>Diseño visual, branding y contenido digital con una identidad definida.</span></div></div>
-    </div>
-    <div class="stats">
-      <div class="stat"><h2>Visión</h2><p>Diseño con intención</p></div>
-      <div class="stat"><h2>9+</h2><p>Años diseñando</p></div>
-      <div class="stat"><h2>Ideas</h2><p>Conceptos que evolucionan</p></div>
-      <div class="stat"><h2>24/7</h2><p>Creatividad constante</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="contacto" class="contact">
-  <h2>Construyamos algo sólido</h2>
-  <p>Disponible para traer tus ideas mas unicas a la realidad.</p>
-  <div class="contact-actions">
-    <button class="btn primary" onclick="openModal()">Contactar</button>
-    <button class="btn secondary" onclick="goInicio()">Inicio</button>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-brand">
-    <img src="Logo.png" alt="Logo de ALEX AHA VISUALS">
-    <span>ALEX AHA VISUALS</span>
-  </div>
-  <div>© 2026 Alex AHA Visuals</div>
-</footer>
-
-<div id="contactModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
-  <div class="modal-card">
-    <div class="modal-top">
-      <div class="modal-title">
-        <img src="Logo.png" alt="Logo de ALEX AHA VISUALS">
-        <div><strong id="modalTitle">Contacto directo</strong><span>Información para comunicarte conmigo</span></div>
-      </div>
-      <button class="close-btn" type="button" aria-label="Cerrar ventana emergente" onclick="closeModal()">×</button>
-    </div>
-    <p class="modal-copy">Estos son los datos que puedes usar para escribirme o llamarme directamente.</p>
-    <div class="contact-info">
-      <div class="info-row"><strong>Número telefónico</strong><span>+58 424-172-26-04</span></div>
-      <div class="info-row"><strong>Correo electrónico</strong><span>Alexanderhaart00@gmail.com</span></div>
-    </div>
-    <div class="modal-actions">
-      <a class="btn primary" href="tel:+584241722604">Llamar ahora</a>
-      <a class="btn secondary" href="mailto:Alexanderhaart00@gmail.com">Enviar correo</a>
-    </div>
-  </div>
-</div>
-
+<section id="sobre-mi"><div class="about"><div class="about-box"><h2 class="section-title">Sobre mí</h2><p>Empecemos por el principio. Mi nombre es Alexander Hurtado Abreu y, desde la infancia, la creatividad ha sido mi manera de entender el mundo. Hoy, a mis 24 años, he convertido esa pasión en mi profesión, actuando como el puente entre las ideas de mis clientes y su materialización en la realidad. Soy un creativo venezolano, amante de los gatos y un curioso incansable, convencido de que ningún concepto es demasiado abstracto cuando se aborda desde la perspectiva adecuada. Me apasiona diseñar realidades, explorar nuevas tendencias y, por supuesto, disfrutar de un buen café durante el proceso.</p><div class="about-brand"><img src="Logo.png" alt="Logo de ALEX AHA VISUALS"><div><strong>ALEX AHA VISUALS</strong><span>Diseño visual, branding y contenido digital con una identidad definida.</span></div></div></div><div class="stats"><div class="stat"><h2>Visión</h2><p>Diseño con intención</p></div><div class="stat"><h2>9+</h2><p>Años diseñando</p></div><div class="stat"><h2>Ideas</h2><p>Conceptos que evolucionan</p></div><div class="stat"><h2>24/7</h2><p>Creatividad constante</p></div></div></div></section>
+<section id="contacto" class="contact"><h2>Construyamos algo sólido</h2><p>Disponible para traer tus ideas mas unicas a la realidad.</p><div class="contact-actions"><button class="btn primary" onclick="openModal()">Contactar</button><button class="btn secondary" onclick="goInicio()">Inicio</button></div></section>
+<footer><div class="footer-brand"><img src="Logo.png" alt="Logo de ALEX AHA VISUALS"><span>ALEX AHA VISUALS</span></div><div>© 2026 Alex AHA Visuals</div></footer>
+<div id="contactModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true"><div class="modal-card"><div class="modal-top"><div class="modal-title"><img src="Logo.png" alt="Logo de ALEX AHA VISUALS"><div><strong id="modalTitle">Contacto directo</strong><span>Información para comunicarte conmigo</span></div></div><button class="close-btn" type="button" aria-label="Cerrar ventana emergente" onclick="closeModal()">×</button></div><p class="modal-copy">Estos son los datos que puedes usar para escribirme o llamarme directamente.</p><div class="contact-info"><div class="info-row"><strong>Número telefónico</strong><span>+58 424-172-26-04</span></div><div class="info-row"><strong>Correo electrónico</strong><span>Alexanderhaart00@gmail.com</span></div></div><div class="modal-actions"><a class="btn primary" href="tel:+584241722604">Llamar ahora</a><a class="btn secondary" href="mailto:Alexanderhaart00@gmail.com">Enviar correo</a></div></div></div>
 <script>
 const floatingLayer = document.getElementById('floatingDecorLayer');
 const ornamentFiles = ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png'];
@@ -350,7 +278,7 @@ function closeMenuThenScroll(target){
   setMenuOpen(false);
   window.setTimeout(() => {
     requestAnimationFrame(() => scrollToTarget(target));
-  }, 120);
+  }, 360);
 }
 navToggle?.addEventListener('click', () => setMenuOpen(!nav.classList.contains('open')));
 navBackdrop?.addEventListener('click', () => setMenuOpen(false));
