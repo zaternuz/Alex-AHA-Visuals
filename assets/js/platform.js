@@ -43,6 +43,17 @@
         // ignore
       }
     }
+
+    // Load platform-specific CSS if available
+    try {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/assets/css/platform.css';
+      link.media = 'all';
+      document.head.appendChild(link);
+    } catch (e) {
+      // ignore
+    }
   } catch (err) {
     window.isAndroid = false;
   }
