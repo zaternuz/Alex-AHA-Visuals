@@ -117,20 +117,19 @@ const navToggle=document.getElementById('navToggle');
 const navBackdrop=document.getElementById('navBackdrop');
 const contactModal=document.getElementById('contactModal');
 let activeDecorCount=0,decorSpawnTimer=null;
-let androidNavTapLock=false;
 function openModal(){contactModal.classList.add('open');contactModal.setAttribute('aria-hidden','false')}
 function closeModal(){contactModal.classList.remove('open');contactModal.setAttribute('aria-hidden','true')}
 function easeOutBack(t){const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2)}
 function scrollToTarget(target){if(!target)return;const headerOffset=92;const start=window.scrollY||window.pageYOffset;const end=Math.max(target.getBoundingClientRect().top+start-headerOffset,0);const distance=end-start;const duration=1200;const startTime=performance.now();function step(now){const progress=Math.min((now-startTime)/duration,1);window.scrollTo(0,start+distance*easeOutBack(progress));if(progress<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 function goInicio(){scrollToTarget(document.getElementById('top'))}
 function setMenuOpen(isOpen){nav.classList.toggle('open',isOpen);navToggle.setAttribute('aria-expanded',String(isOpen));navToggle.textContent=isOpen?'×':'☰';navBackdrop.classList.toggle('show',isOpen)}
-function closeMenuThenScrollToId(targetId){const target=document.getElementById(targetId);if(!target)return;setMenuOpen(false);setTimeout(()=>{const top=Math.max(target.getBoundingClientRect().top+window.pageYOffset-92,0);if(history.replaceState)history.replaceState(null,'','#'+targetId);window.scrollTo({top,behavior:'smooth'});},80)}
 function isAndroid(){return /Android/i.test(navigator.userAgent||'')}
-function activateNavLink(e){const targetId=this.getAttribute('data-scroll')||(this.getAttribute('href')||'').replace('#','');if(!targetId)return;if(!isAndroid())return;e.preventDefault();e.stopPropagation();if(androidNavTapLock)return;androidNavTapLock=true;setTimeout(()=>{androidNavTapLock=false;},650);closeMenuThenScrollToId(targetId)}
+function closeMenuThenScrollToId(targetId){const target=document.getElementById(targetId);if(!target)return;setMenuOpen(false);setTimeout(()=>{target.scrollIntoView({behavior:'smooth',block:'start'});window.scrollBy(0,-92);},60)}
+function setupAndroidNav(){document.querySelectorAll('.nav-links a').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const targetId=link.dataset.scroll||link.getAttribute('href').replace('#','');closeMenuThenScrollToId(targetId);},{passive:false});});}
 navToggle?.addEventListener('click',()=>setMenuOpen(!nav.classList.contains('open')));
 navBackdrop?.addEventListener('click',()=>setMenuOpen(false));
 window.addEventListener('resize',()=>{if(window.innerWidth>900)setMenuOpen(false)});
-document.querySelectorAll('.nav-links a').forEach(link=>{link.addEventListener('click',activateNavLink);link.addEventListener('pointerup',activateNavLink)});
+if(isAndroid()){setupAndroidNav();}
 document.querySelector('.brand')?.addEventListener('click',e=>{if(e.currentTarget.getAttribute('href')==='#top'){e.preventDefault();goInicio()}});
 contactModal.addEventListener('click',e=>{if(e.target===contactModal)closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();setMenuOpen(false)}});
