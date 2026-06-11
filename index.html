@@ -39,11 +39,11 @@ html.device-android .floating-decor-layer, html.device-android .floating-icon{di
   <a class="brand" href="#top" data-scroll="top"><img src="Logo.png" alt="Logo de ALEX AHA VISUALS"><span>ALEX AHA VISUALS</span></a>
   <button id="navToggle" class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
   <div class="nav-links">
-    <a href="#servicios" data-scroll="servicios">Servicios</a>
-    <a href="#portafolio" data-scroll="portafolio">Portafolio</a>
-    <a href="#herramientas" data-scroll="herramientas">Herramientas</a>
-    <a href="#sobre-mi" data-scroll="sobre-mi">Sobre mí</a>
-    <a href="#contacto" data-scroll="contacto">Contacto</a>
+    <a href="#servicios" data-scroll="servicios" onclick="if(document.documentElement.classList.contains('device-android')){closeMenuThenScrollToId('servicios');return false;}">Servicios</a>
+    <a href="#portafolio" data-scroll="portafolio" onclick="if(document.documentElement.classList.contains('device-android')){closeMenuThenScrollToId('portafolio');return false;}">Portafolio</a>
+    <a href="#herramientas" data-scroll="herramientas" onclick="if(document.documentElement.classList.contains('device-android')){closeMenuThenScrollToId('herramientas');return false;}">Herramientas</a>
+    <a href="#sobre-mi" data-scroll="sobre-mi" onclick="if(document.documentElement.classList.contains('device-android')){closeMenuThenScrollToId('sobre-mi');return false;}">Sobre mí</a>
+    <a href="#contacto" data-scroll="contacto" onclick="if(document.documentElement.classList.contains('device-android')){closeMenuThenScrollToId('contacto');return false;}">Contacto</a>
   </div>
 </nav>
 <div id="navBackdrop" class="nav-backdrop" aria-hidden="true"></div>
@@ -120,16 +120,14 @@ let activeDecorCount=0,decorSpawnTimer=null;
 function openModal(){contactModal.classList.add('open');contactModal.setAttribute('aria-hidden','false')}
 function closeModal(){contactModal.classList.remove('open');contactModal.setAttribute('aria-hidden','true')}
 function easeOutBack(t){const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2)}
-function scrollToTarget(target){if(!target)return;const headerOffset=92;const start=window.scrollY||window.pageYOffset;const end=Math.max(target.getBoundingClientRect().top+start-headerOffset,0);const distance=end-start;const duration=1200;const startTime=performance.now();function step(now){const progress=Math.min((now-startTime)/duration,1);window.scrollTo(0,start+distance*easeOutBack(progress));if(progress<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+function scrollToTarget(target){if(!target)return;const headerOffset=92;const start=window.scrollY||window.pageYOffset;const end=Math.max(target.getBoundingClientRect().top+start-headerOffset,0);const distance=end-start;const duration=1200;const startTime=performance.now();function step(now){const progress=Math.min((now-startTime)/duration,1);window.scrollTo(0,start+distance+distance*(easeOutBack(progress)-1));if(progress<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 function goInicio(){scrollToTarget(document.getElementById('top'))}
 function setMenuOpen(isOpen){nav.classList.toggle('open',isOpen);navToggle.setAttribute('aria-expanded',String(isOpen));navToggle.textContent=isOpen?'×':'☰';navBackdrop.classList.toggle('show',isOpen)}
 function isAndroid(){return /Android/i.test(navigator.userAgent||'')}
-function closeMenuThenScrollToId(targetId){const target=document.getElementById(targetId);if(!target)return;setMenuOpen(false);setTimeout(()=>{target.scrollIntoView({behavior:'smooth',block:'start'});window.scrollBy(0,-92);},60)}
-function setupAndroidNav(){document.querySelectorAll('.nav-links a').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const targetId=link.dataset.scroll||link.getAttribute('href').replace('#','');closeMenuThenScrollToId(targetId);},{passive:false});});}
+function closeMenuThenScrollToId(targetId){const target=document.getElementById(targetId);if(!target)return;setMenuOpen(false);setTimeout(()=>{const top=Math.max(target.getBoundingClientRect().top+window.pageYOffset-92,0);window.scrollTo({top,behavior:'smooth'});},50)}
 navToggle?.addEventListener('click',()=>setMenuOpen(!nav.classList.contains('open')));
 navBackdrop?.addEventListener('click',()=>setMenuOpen(false));
 window.addEventListener('resize',()=>{if(window.innerWidth>900)setMenuOpen(false)});
-if(isAndroid()){setupAndroidNav();}
 document.querySelector('.brand')?.addEventListener('click',e=>{if(e.currentTarget.getAttribute('href')==='#top'){e.preventDefault();goInicio()}});
 contactModal.addEventListener('click',e=>{if(e.target===contactModal)closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();setMenuOpen(false)}});
